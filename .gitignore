@@ -1,1 +1,4 @@
-# oluşturulacak
+.vs
+/src/BuildingBlocks/EventBus/EventBus.Base/obj
+/src/Services/ContactService/ContactService.Api/obj
+/src/Services/ReportService/ReportService.Api/obj
