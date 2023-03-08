@@ -1,4 +1,7 @@
 .vs
 /src/BuildingBlocks/EventBus/EventBus.Base/obj
+/src/BuildingBlocks/EventBus/EventBus.Base/bin
 /src/Services/ContactService/ContactService.Api/obj
+/src/Services/ContactService/ContactService.Api/bin
 /src/Services/ReportService/ReportService.Api/obj
+/src/Services/ReportService/ReportService.Api/bin
