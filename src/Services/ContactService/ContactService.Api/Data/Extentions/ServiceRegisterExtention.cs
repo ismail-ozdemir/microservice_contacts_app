@@ -31,6 +31,8 @@ namespace ContactService.Api.Data.Extentions
         }
         public static void SetDatabaseMigrations(this IApplicationBuilder app)
         {
+
+
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 Log.Information("Applying migrations {DbContext}...", nameof(ContactsContext));
@@ -40,6 +42,17 @@ namespace ContactService.Api.Data.Extentions
 
                 Log.Information("Applyed migrations {DbContext}...", nameof(ContactsContext));
             }
+        }
+
+
+        public static async void UseSeedData(this IApplicationBuilder builder)
+        {
+            using var scope = builder.ApplicationServices.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<ContactsContext>();
+            var loger = scope.ServiceProvider.GetRequiredService<ILogger<ContactContextSeed>>();
+
+            ContactContextSeed seedContext = new();
+            await seedContext.SeedAsync(context, loger);
         }
 
 

@@ -33,6 +33,7 @@ try
         app.UseSwaggerUI();
 
         app.SetDatabaseMigrations();
+        app.UseSeedData();
     }
 
     app.UseHttpsRedirection();
