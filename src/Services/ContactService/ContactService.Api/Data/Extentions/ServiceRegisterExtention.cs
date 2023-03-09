@@ -1,5 +1,6 @@
 ﻿using ContactService.Api.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Runtime;
 
 
@@ -32,8 +33,12 @@ namespace ContactService.Api.Data.Extentions
         {
             using (var scope = app.ApplicationServices.CreateScope())
             {
+                Log.Information("Applying migrations {DbContext}...", nameof(ContactsContext));
+
                 ContactsContext context = scope.ServiceProvider.GetRequiredService<ContactsContext>();
                 context.Database.Migrate();
+
+                Log.Information("Applyed migrations {DbContext}...", nameof(ContactsContext));
             }
         }
 
