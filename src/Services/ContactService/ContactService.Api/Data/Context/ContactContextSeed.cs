@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using ContactService.Api.Data.Models;
 using Bogus;
 
+
 namespace ContactService.Api.Data.Context
 {
 
