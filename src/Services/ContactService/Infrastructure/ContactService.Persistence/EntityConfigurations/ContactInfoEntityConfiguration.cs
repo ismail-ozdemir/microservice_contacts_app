@@ -19,9 +19,9 @@ namespace ContactService.Persistence.EntityConfigurations
             //    p => (InformationType)Enum.Parse(typeof(InformationType), p)
             //);
 
-            builder.HasOne(p => p.User)
+            builder.HasOne(p => p.Person)
             .WithMany(p => p.ContactInformations)
-            .HasForeignKey(p => p.UserId);
+            .HasForeignKey(p => p.PersonId);
 
         }
     }

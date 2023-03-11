@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Infrastructure\ContactService.Infrastructure\ContactService.Infrastructure.csproj" />
     <ProjectReference Include="..\Infrastructure\ContactService.Persistence\ContactService.Persistence.csproj" />
   </ItemGroup>

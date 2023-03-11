@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Retry;
 
+using Person = ContactService.Core.Domain.Entities.Person;
+
 namespace ContactService.Persistence.Context
 {
     internal class ContactContextSeed
@@ -19,7 +21,7 @@ namespace ContactService.Persistence.Context
         private async Task ProccessSeeding(ContactsContext context, ILogger<ContactContextSeed> logger)
         {
 
-            if (!context.Users.Any())
+            if (!context.Persons.Any())
             {
                 logger.LogInformation("Fake data generating");
                 var data = GetFakeData();
@@ -30,7 +32,7 @@ namespace ContactService.Persistence.Context
 
 
 
-                await context.Users.AddRangeAsync(users);
+                await context.Persons.AddRangeAsync(users);
                 await context.SaveChangesAsync();
                 logger.LogInformation("{SeedData} seed data saved. Record Count :{RecordCount}", "Users", users.Count);
 
@@ -58,12 +60,12 @@ namespace ContactService.Persistence.Context
         }
 
 
-        private Tuple<List<User>, List<ContactInformation>> GetFakeData()
+        private Tuple<List<Person>, List<ContactInformation>> GetFakeData()
         {
 
             List<ContactInformation> info = new();
 
-            var userFaker = new Faker<User>("tr");
+            var userFaker = new Faker<Person>("tr");
 
             userFaker.RuleFor(u => u.Id, f => f.Random.Uuid())
                      .RuleFor(u => u.Name, f => f.Person.FirstName)
@@ -72,9 +74,9 @@ namespace ContactService.Persistence.Context
                      .FinishWith((f, u) =>
                      {
 
-                         info.Add(new() { Id = Guid.NewGuid(), UserId = u.Id, InformationType = InformationType.Email, Content = f.Person.Email });
-                         info.Add(new() { Id = Guid.NewGuid(), UserId = u.Id, InformationType = InformationType.Location, Content = f.Address.City() });
-                         info.Add(new() { Id = Guid.NewGuid(), UserId = u.Id, InformationType = InformationType.Phone, Content = f.Person.Phone });
+                         info.Add(new() { Id = Guid.NewGuid(), PersonId = u.Id, InformationType = InformationType.Email, Content = f.Person.Email });
+                         info.Add(new() { Id = Guid.NewGuid(), PersonId = u.Id, InformationType = InformationType.Location, Content = f.Address.City() });
+                         info.Add(new() { Id = Guid.NewGuid(), PersonId = u.Id, InformationType = InformationType.Phone, Content = f.Person.Phone });
                      });
 
             var users = userFaker.Generate(100);

@@ -2,8 +2,7 @@
 
 namespace ContactService.Application.Interfaces.Repository
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IPersonRepository : IRepository<Person>
     {
-        
     }
 }

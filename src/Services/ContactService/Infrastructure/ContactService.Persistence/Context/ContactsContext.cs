@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ContactService.Persistence.Context
 {
     // interface ile soyutlanırsa seed context üzerinden test yazarken işlemler daha kolay olacaktır.
-    internal class ContactsContext : DbContext, IContactsContext
+    internal class ContactsContext : DbContext
     {
 
         public ContactsContext(DbContextOptions<ContactsContext> options) : base(options)
@@ -15,7 +15,7 @@ namespace ContactService.Persistence.Context
             
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<ContactInformation> ContactInformations { get; set; }
 
         public DbSet<TEntity> SetEntity<TEntity>() where TEntity : BaseEntity, new() => Set<TEntity>();

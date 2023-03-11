@@ -2,7 +2,7 @@
 
 namespace ContactService.Core.Domain.Entities
 {
-    public class User: BaseEntity
+    public class Person : BaseEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

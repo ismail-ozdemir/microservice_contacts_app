@@ -1,12 +1,14 @@
 ﻿namespace ContactService.Application.Wrappers
 {
-    public abstract class ServiceResponse<T>
+    public class ServiceResponse<T>
     {
-        public T Value { get; set; }
+        public Guid TraceId { get; set; }
+        public virtual bool isSuccess { get; set; } = true;
+        public T Data { get; set; }
 
-        protected ServiceResponse(T value)
+        public ServiceResponse(T value)
         {
-            Value = value;
+            Data = value;
         }
     }
 }

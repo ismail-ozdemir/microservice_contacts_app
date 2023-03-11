@@ -4,12 +4,12 @@ using ContactService.Core.Domain.Entities;
 
 namespace ContactService.Persistence.EntityConfigurations
 {
-    internal class UserEntityConfiguration : IEntityTypeConfiguration<User>
+    internal class PersonEntityConfiguration : IEntityTypeConfiguration<Person>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Person> builder)
         {
 
-            builder.ToTable("Users");
+            builder.ToTable("Persons");
 
             builder.HasKey(x => x.Id);
 
