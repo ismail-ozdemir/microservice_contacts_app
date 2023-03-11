@@ -1,6 +1,6 @@
 using Serilog;
 using ContactService.Persistence.Extentions;
-
+using ContactService.Application;
 
 IConfiguration configuration = GetConfiguration();
 Log.Logger = CreateSerilogLogger(configuration);
@@ -19,6 +19,7 @@ try
     builder.Services.AddSwaggerGen();
 
 
+    builder.Services.RegisterApplication();
     builder.Services.RegisterPersistence(builder.Configuration);
     builder.Services.RegisterInfrastructer(builder.Configuration);
 

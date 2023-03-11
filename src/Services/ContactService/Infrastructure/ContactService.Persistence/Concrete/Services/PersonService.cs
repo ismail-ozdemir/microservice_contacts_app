@@ -3,6 +3,7 @@ using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Interfaces.Services;
 using ContactService.Application.Wrappers;
 using ContactService.Core.Domain.Entities;
+using FluentValidation;
 using Microsoft.Extensions.Logging;
 
 namespace ContactService.Persistence.Concrete.Services
@@ -11,22 +12,26 @@ namespace ContactService.Persistence.Concrete.Services
     {
         private readonly IPersonRepository _personRepository;
         private readonly ILogger<PersonService> _logger;
+        private readonly IValidator<CreatePersonRequest> _createPersonValidator;
 
-        public PersonService(IPersonRepository personRepository, ILogger<PersonService> logger)
+        public PersonService(IPersonRepository personRepository, ILogger<PersonService> logger, IValidator<CreatePersonRequest> createPersonValidator)
         {
             _personRepository = personRepository;
             _logger = logger;
+            _createPersonValidator = createPersonValidator;
         }
 
         public async Task<ServiceResponse<CreatePersonResponse>> AddAsync(CreatePersonRequest request)
         {
+            
+            await _createPersonValidator.ValidateAndThrowAsync(request);
 
             var person = new Person
             {
                 Id = Guid.NewGuid(),
                 Name = request.Name,
                 Surname = request.Surname,
-                Company=request.Company,
+                Company = request.Company,
             };
 
             _logger.LogInformation("Person saving...");
