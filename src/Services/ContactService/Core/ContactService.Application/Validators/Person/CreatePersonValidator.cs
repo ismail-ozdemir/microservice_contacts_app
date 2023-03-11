@@ -9,6 +9,7 @@ namespace ContactService.Application.Validators.Person
         {
             RuleFor(p => p.Name)
                          .NotEmpty().NotNull().WithMessage("alan boş olamaz.")
+                         .MinimumLength(3).WithMessage("3 karakterden daha uzun olmalı.")
                          .MaximumLength(100).WithMessage("maksimum uzunluk 100 karakteri geçmemelidir.");
 
             RuleFor(p => p.Surname)

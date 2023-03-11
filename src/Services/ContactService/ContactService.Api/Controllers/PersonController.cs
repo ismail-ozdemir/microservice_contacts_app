@@ -2,6 +2,7 @@
 using ContactService.Application.Interfaces.Services;
 using ContactService.Application.Wrappers;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace ContactService.Api.Controllers
 {
@@ -19,6 +20,7 @@ namespace ContactService.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(ServiceResponse<CreatePersonResponse>), 200)]
+        [ProducesResponseType(typeof(ValidationErrorResponse), 400)]
         public async Task<IActionResult> AddAsync(CreatePersonRequest request)
         {
             var response = await personService.AddAsync(request);

@@ -1,6 +1,7 @@
 using Serilog;
 using ContactService.Persistence.Extentions;
 using ContactService.Application;
+using ContactService.Api.Middlewares;
 
 IConfiguration configuration = GetConfiguration();
 Log.Logger = CreateSerilogLogger(configuration);
@@ -29,7 +30,7 @@ try
 
     var app = builder.Build();
 
-
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
 
     if (app.Environment.IsDevelopment())
     {
