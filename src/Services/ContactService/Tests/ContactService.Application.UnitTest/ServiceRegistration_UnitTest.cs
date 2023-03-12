@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ContactService.Application;
 using AutoMapper;
 using FluentValidation;
 using ContactService.Application.Dto.Person;
 using ContactService.Application.Validators.Person;
 
-namespace ContactService.UnitTest.Application
+namespace ContactService.Application.UnitTest
 {
     public class ServiceRegistration_UnitTest
     {

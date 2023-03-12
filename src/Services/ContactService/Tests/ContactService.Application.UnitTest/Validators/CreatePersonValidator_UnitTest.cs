@@ -1,7 +1,7 @@
 ﻿using ContactService.Application.Dto.Person;
 using ContactService.Application.Validators.Person;
 
-namespace ContactService.UnitTest.Application.Validators
+namespace ContactService.Application.UnitTest.Validators
 {
     public class CreatePersonValidator_UnitTest
     {

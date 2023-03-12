@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
+using ContactService.Application.Dto.Person;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Mapping;
-using ContactService.Application.Validators.Person;
 using ContactService.Core.Domain.Entities;
 using ContactService.Persistence.Concrete.Services;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework.Internal;
 
-namespace ContactService.UnitTest.Presentation.Concrete.Services
+namespace ContactService.Persistence.UnitTest.Concrete.Services
 {
     // TO DO : beklenen exception tipleri için test yazılması gerekli.
     public class PersonService_UnitTest
@@ -19,6 +21,7 @@ namespace ContactService.UnitTest.Presentation.Concrete.Services
         IPersonRepository _personRepository;
         ILogger<PersonService> _logger;
 
+
         [SetUp]
         public void Setup()
         {
@@ -26,43 +29,37 @@ namespace ContactService.UnitTest.Presentation.Concrete.Services
             _personRepository = GetPersonRepository();
             _logger = GetLogger();
 
-
         }
 
         [Test]
-        public async Task PersonService_AddAsync_ServiceResponse()
+        public async Task PersonService_AddAsyncValid_ServiceResponse()
         {
-            var validator = new CreatePersonValidator();
-            var personService = new PersonService(_personRepository, _logger, validator, _mapper);
-            var response = await personService.AddAsync(new() { Name = "ismail", Surname = "Özdemir", Company = "github" });
-
+            var reqData = new CreatePersonRequest() { Name = "ismail", Surname = "Özdemir", Company = "github" };
+            var mock = new Mock<IValidator<CreatePersonRequest>>();
+            var personService = new PersonService(_personRepository, _logger, mock.Object, _mapper);
+            var response = await personService.AddAsync(reqData);
             Assert.IsTrue(response.isSuccess && response.Data.PersonId != Guid.Empty);
 
         }
+
         [Test]
-        public void PersonService_NotValidAddAsync_ValidationException()
+        public void PersonService_UpdateAsync_ServiceResponse()
         {
-            var validator = new CreatePersonValidator();
-            var personService = new PersonService(_personRepository, _logger, validator, _mapper);
-            var ex = Assert.Catch(() => { personService.AddAsync(new() { Name = "", Surname = "Özdemir", Company = "github" }).Wait(); });
-            Assert.IsTrue(ex.InnerException is FluentValidation.ValidationException);
+
+            Assert.Fail("Test Yazılmadı...");
         }
+        [Test]
+        public void PersonService_DeleteAsync_ServiceResponse()
+        {
 
-        //[Test]
-        //public void PersonService_UpdateAsync_ServiceResponse()
-        //{
+            Assert.Fail("Test Yazılmadı...");
+        }
+        [Test]
+        public void PersonService_GetPersonListWithPage_PagedResponse()
+        {
 
-        //}
-        //[Test]
-        //public void PersonService_DeleteAsync_ServiceResponse()
-        //{
-
-        //}
-        //[Test]
-        //public void PersonService_GetPersonListWithPage_PagedResponse()
-        //{
-
-        //}
+            Assert.Fail("Test Yazılmadı...");
+        }
 
 
 
@@ -89,9 +86,7 @@ namespace ContactService.UnitTest.Presentation.Concrete.Services
         private ILogger<PersonService> GetLogger()
         {
             var serviceProvider = new ServiceCollection().AddLogging().BuildServiceProvider();
-
             var factory = serviceProvider.GetService<ILoggerFactory>();
-
             return factory.CreateLogger<PersonService>();
         }
 

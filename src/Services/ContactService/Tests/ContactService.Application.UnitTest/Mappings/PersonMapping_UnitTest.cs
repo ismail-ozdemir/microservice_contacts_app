@@ -3,9 +3,9 @@ using ContactService.Application.Dto.Person;
 using ContactService.Application.Mapping;
 using ContactService.Core.Domain.Entities;
 
-namespace ContactService.UnitTest.Application.Mappings
+namespace ContactService.Application.UnitTest.Mappings
 {
-  
+
     public class PersonMapping_UnitTest
     {
 
@@ -14,13 +14,14 @@ namespace ContactService.UnitTest.Application.Mappings
         [SetUp]
         public void Setup()
         {
-            config = new MapperConfiguration(cfg => {
+            config = new MapperConfiguration(cfg =>
+            {
                 cfg.AddProfile<PersonMapping>();
             });
-            
+
 
             _mapper = config.CreateMapper();
-            
+
         }
 
 
