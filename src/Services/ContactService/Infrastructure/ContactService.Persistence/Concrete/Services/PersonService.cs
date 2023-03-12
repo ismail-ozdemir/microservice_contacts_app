@@ -1,4 +1,5 @@
-﻿using ContactService.Application.Dto.Person;
+﻿using AutoMapper;
+using ContactService.Application.Dto.Person;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Interfaces.Services;
 using ContactService.Application.Wrappers;
@@ -13,39 +14,38 @@ namespace ContactService.Persistence.Concrete.Services
         private readonly IPersonRepository _personRepository;
         private readonly ILogger<PersonService> _logger;
         private readonly IValidator<CreatePersonRequest> _createPersonValidator;
+        private readonly IMapper _mapper;
 
-        public PersonService(IPersonRepository personRepository, ILogger<PersonService> logger, IValidator<CreatePersonRequest> createPersonValidator)
+        public PersonService(IPersonRepository personRepository, ILogger<PersonService> logger, IValidator<CreatePersonRequest> createPersonValidator, IMapper mapper)
         {
             _personRepository = personRepository;
             _logger = logger;
             _createPersonValidator = createPersonValidator;
+            _mapper = mapper;
         }
 
         public async Task<ServiceResponse<CreatePersonResponse>> AddAsync(CreatePersonRequest request)
         {
-            
+            _logger.LogInformation("Person validating...");
             await _createPersonValidator.ValidateAndThrowAsync(request);
+            _logger.LogInformation("Person validated...");
 
-            var person = new Person
-            {
-                Id = Guid.NewGuid(),
-                Name = request.Name,
-                Surname = request.Surname,
-                Company = request.Company,
-            };
+            _logger.LogInformation("Person is mapping...");
+            var person = _mapper.Map<Person>(request);
+            _logger.LogInformation("Person was mapped...");
 
-            _logger.LogInformation("Person saving...");
+            _logger.LogInformation("Person is adding...");
             await _personRepository.AddAsync(person);
+            _logger.LogInformation("Person added...");
+
             await _personRepository.SaveAsync();
             _logger.LogInformation("Person saved.");
-            var response = new CreatePersonResponse
-            {
-                PersonId = person.Id,
-                Name = person.Name,
-                Surname = person.Surname,
-                Company = person.Company
 
-            };
+
+            _logger.LogInformation("Person response is mapping...");
+            var response = _mapper.Map<CreatePersonResponse>(person);
+            _logger.LogInformation("Person response was mapped.");
+
             return new ServiceResponse<CreatePersonResponse>(response);
 
         }

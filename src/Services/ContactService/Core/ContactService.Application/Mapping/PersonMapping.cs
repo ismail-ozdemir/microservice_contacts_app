@@ -9,7 +9,10 @@ namespace ContactService.Application.Mapping
 
         public PersonMapping()
         {
-            CreateMap<Person, CreatePersonRequest>();
+            CreateMap<CreatePersonRequest, Person>().ForMember(t => t.Id, opt => opt.Ignore())
+                                                    .ForMember(t => t.ContactInformations, opt => opt.Ignore());
+
+            CreateMap<Person, CreatePersonResponse>().ForMember(t => t.PersonId, opt => opt.MapFrom(s => s.Id));
         }
 
     }
