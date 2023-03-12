@@ -1,5 +1,4 @@
-﻿using ContactService.Application.Dto.Person;
-using ContactService.Application.Validators.Person;
+﻿using ContactService.Application.Validators.Person;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
