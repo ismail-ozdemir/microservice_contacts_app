@@ -4,10 +4,10 @@ using ContactService.Core.Domain.Entities;
 
 namespace ContactService.Application.Mapping
 {
-    public class PersonelMapping : Profile
+    public class PersonMapping : Profile
     {
 
-        public PersonelMapping()
+        public PersonMapping()
         {
             CreateMap<Person, CreatePersonRequest>();
         }
