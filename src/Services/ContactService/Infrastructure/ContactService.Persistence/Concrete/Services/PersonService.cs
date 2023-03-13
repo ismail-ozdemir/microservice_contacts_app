@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.Person;
+using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Interfaces.Services;
 using ContactService.Application.Wrappers;
-using ContactService.Core.Domain.Entities;
+using ContactService.Domain.Entities;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 
@@ -35,15 +35,12 @@ namespace ContactService.Persistence.Concrete.Services
             _logger.LogInformation("Person was mapped...");
 
             _logger.LogInformation("Person is adding...");
-            await _personRepository.AddAsync(person);
+            var newPerson = await _personRepository.AddAsync(person);
             _logger.LogInformation("Person added...");
-
-            await _personRepository.SaveAsync();
-            _logger.LogInformation("Person saved.");
 
 
             _logger.LogInformation("Person response is mapping...");
-            var response = _mapper.Map<CreatePersonResponse>(person);
+            var response = _mapper.Map<CreatePersonResponse>(newPerson);
             _logger.LogInformation("Person response was mapped.");
 
             return new ServiceResponse<CreatePersonResponse>(response);

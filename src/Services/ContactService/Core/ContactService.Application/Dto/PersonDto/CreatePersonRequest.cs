@@ -1,4 +1,4 @@
-﻿namespace ContactService.Application.Dto.Person
+﻿namespace ContactService.Application.Dto.PersonDto
 {
     public class CreatePersonRequest
     {

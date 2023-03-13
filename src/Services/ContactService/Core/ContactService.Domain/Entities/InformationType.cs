@@ -1,4 +1,4 @@
-﻿namespace ContactService.Core.Domain
+﻿namespace ContactService.Domain
 {
     public enum InformationType
     {

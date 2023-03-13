@@ -1,12 +1,12 @@
 ﻿using Bogus;
-using ContactService.Core.Domain;
-using ContactService.Core.Domain.Entities;
+using ContactService.Domain;
+using ContactService.Domain.Entities;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Retry;
 
-using Person = ContactService.Core.Domain.Entities.Person;
+using Person = ContactService.Domain.Entities.Person;
 
 namespace ContactService.Persistence.Context
 {

@@ -1,6 +1,6 @@
 ﻿using ContactService.Application.Wrappers;
 
-namespace ContactService.Application.Dto.Person
+namespace ContactService.Application.Dto.PersonDto
 {
     public class CreatePersonResponse
     {

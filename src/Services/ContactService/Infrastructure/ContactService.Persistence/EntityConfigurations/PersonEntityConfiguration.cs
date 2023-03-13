@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using ContactService.Core.Domain.Entities;
+using ContactService.Domain.Entities;
 
 namespace ContactService.Persistence.EntityConfigurations
 {

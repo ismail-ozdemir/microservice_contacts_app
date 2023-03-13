@@ -1,6 +1,5 @@
-﻿using ContactService.Application.Interfaces;
-using ContactService.Application.Interfaces.Repository;
-using ContactService.Core.Domain.Entities;
+﻿using ContactService.Application.Interfaces.Repository;
+using ContactService.Domain.Entities;
 using ContactService.Persistence.Context;
 
 namespace ContactService.Persistence.Concrete.Repositories

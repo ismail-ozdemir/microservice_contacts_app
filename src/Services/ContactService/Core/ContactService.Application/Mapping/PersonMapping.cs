@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.Person;
-using ContactService.Core.Domain.Entities;
+using ContactService.Application.Dto.PersonDto;
+using ContactService.Domain.Entities;
 
 namespace ContactService.Application.Mapping
 {

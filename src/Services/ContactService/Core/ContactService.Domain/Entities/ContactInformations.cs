@@ -1,6 +1,6 @@
 ﻿using ContactService.Domain.Common;
 
-namespace ContactService.Core.Domain.Entities
+namespace ContactService.Domain.Entities
 {
     public class ContactInformation : BaseEntity
     {

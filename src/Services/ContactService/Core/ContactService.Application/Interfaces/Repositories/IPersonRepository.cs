@@ -1,4 +1,4 @@
-﻿using ContactService.Core.Domain.Entities;
+﻿using ContactService.Domain.Entities;
 
 namespace ContactService.Application.Interfaces.Repository
 {
