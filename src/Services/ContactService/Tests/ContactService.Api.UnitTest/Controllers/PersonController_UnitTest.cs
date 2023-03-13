@@ -1,5 +1,5 @@
 ﻿using ContactService.Api.Controllers;
-using ContactService.Application.Dto.Person;
+using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Interfaces.Services;
 using ContactService.Application.Wrappers;
 using Microsoft.AspNetCore.Mvc;

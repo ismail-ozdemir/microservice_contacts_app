@@ -1,4 +1,4 @@
-﻿using ContactService.Application.Dto.Person;
+﻿using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Validators.Person;
 
 namespace ContactService.Application.UnitTest.Validators

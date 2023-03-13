@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.Person;
+using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Mapping;
-using ContactService.Core.Domain.Entities;
+using ContactService.Domain.Entities;
 
 namespace ContactService.Application.UnitTest.Mappings
 {

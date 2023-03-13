@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.Person;
+using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Mapping;
-using ContactService.Core.Domain.Entities;
+using ContactService.Domain.Entities;
 using ContactService.Persistence.Concrete.Services;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -98,7 +97,7 @@ namespace ContactService.Persistence.UnitTest.Concrete.Services
                     (person) =>
                     {
                         person.Id = Guid.NewGuid();
-                        return Task.FromResult(true);
+                        return Task.FromResult(person);
                     });
 
 
