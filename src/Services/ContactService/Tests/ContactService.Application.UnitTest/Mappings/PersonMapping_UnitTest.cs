@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using ContactService.Application.Dto.PersonDto;
+using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Mapping;
 using ContactService.Domain.Entities;
 
 namespace ContactService.Application.UnitTest.Mappings
 {
-
     public class PersonMapping_UnitTest
     {
 
@@ -18,8 +18,6 @@ namespace ContactService.Application.UnitTest.Mappings
             {
                 cfg.AddProfile<PersonMapping>();
             });
-
-
             _mapper = config.CreateMapper();
 
         }
@@ -35,9 +33,9 @@ namespace ContactService.Application.UnitTest.Mappings
         [Test]
         public void PersonMapping_ConvertCreatePersonRequestToPerson_IsValid()
         {
-            var req = new CreatePersonRequest { Name = "ismail", Surname = "Özdemir", Company = "github" };
-            var person = _mapper.Map<Person>(req);
-            Assert.IsTrue(req.Name == person.Name && req.Surname == person.Surname && req.Company == person.Company);
+            var command = new CreatePersonCommand { Name = "ismail", Surname = "Özdemir", Company = "github" };
+            var person = _mapper.Map<Person>(command);
+            Assert.IsTrue(command.Name == person.Name && command.Surname == person.Surname && command.Company == person.Company);
 
         }
 

@@ -3,6 +3,7 @@ using AutoMapper;
 using FluentValidation;
 using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Validators.Person;
+using ContactService.Application.Features.PersonFeatures.Commands;
 
 namespace ContactService.Application.UnitTest
 {
@@ -33,7 +34,7 @@ namespace ContactService.Application.UnitTest
         public void ServiceRegistration_ResolveCreatePersonRequestValidator_IsValid()
         {
             var provider = _services.BuildServiceProvider();
-            var validator = provider.GetRequiredService<IValidator<CreatePersonRequest>>();
+            var validator = provider.GetRequiredService<IValidator<CreatePersonCommand>>();
             Assert.IsTrue(validator.GetType() == typeof(CreatePersonValidator));
         }
         #endregion

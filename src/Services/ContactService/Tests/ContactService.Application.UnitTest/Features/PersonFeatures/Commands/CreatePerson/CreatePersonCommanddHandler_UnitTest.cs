@@ -1,6 +1,4 @@
-﻿
-using AutoMapper;
-using ContactService.Application.Dto.PersonDto;
+﻿using AutoMapper;
 using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Mapping;
@@ -9,19 +7,19 @@ using Moq;
 
 namespace ContactService.Application.UnitTest.Features.PersonFeatures.Commands
 {
-    public class AddPersonCommandHandler_UnitTest
+    public class CreatePersonCommanddHandler_UnitTest
     {
 
         private IMapper _mapper;
         private IPersonRepository _personRepository;
 
-        private CreatePersonRequest req;
+        private CreatePersonCommand command;
 
         [SetUp]
         public void Setup()
         {
             _mapper = new MapperConfiguration(cfg => { cfg.AddProfile<PersonMapping>(); }).CreateMapper();
-            req = new() { Name = "ismail", Surname = "Özdemir", Company = "github" };
+            command = new() { Name = "ismail", Surname = "Özdemir", Company = "github" };
             _personRepository = CreatePersonRepository();
         }
 
@@ -29,12 +27,11 @@ namespace ContactService.Application.UnitTest.Features.PersonFeatures.Commands
         public async Task AddPersonCommandHandler_HandleAddPersonCommand_CreatePersonResponse()
         {
 
-            AddPersonCommand command = new(req);
-            AddPersonCommandHandler handler = new AddPersonCommandHandler(_mapper, _personRepository);
+            CreatePersonCommandHandler handler = new CreatePersonCommandHandler(_mapper, _personRepository);
             var result = await handler.Handle(command, new CancellationToken());
 
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.PersonId != Guid.Empty && result.Name == req.Name && result.Surname == req.Surname && result.Company == req.Company);
+            Assert.IsTrue(result.PersonId != Guid.Empty && result.Name == command.Name && result.Surname == command.Surname && result.Company == command.Company);
         }
 
 

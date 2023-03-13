@@ -20,9 +20,8 @@ namespace ContactService.Api.Controllers
         // TODO :  badrequest dönüşleri
         [HttpPost]
         [ProducesResponseType(typeof(CreatePersonResponse), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> AddAsync(CreatePersonRequest request)
+        public async Task<IActionResult> AddAsync(CreatePersonCommand command)
         {
-            var command = new AddPersonCommand(request);
             var entity = await _mediator.Send(command);
             return new ObjectResult(entity) { StatusCode = StatusCodes.Status201Created };
         }

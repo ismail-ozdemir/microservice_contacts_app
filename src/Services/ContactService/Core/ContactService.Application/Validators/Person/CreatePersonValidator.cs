@@ -1,9 +1,9 @@
-﻿using ContactService.Application.Dto.PersonDto;
+﻿using ContactService.Application.Features.PersonFeatures.Commands;
 using FluentValidation;
 
 namespace ContactService.Application.Validators.Person
 {
-    internal class CreatePersonValidator : AbstractValidator<CreatePersonRequest>
+    internal class CreatePersonValidator : AbstractValidator<CreatePersonCommand>
     {
         public CreatePersonValidator()
         {

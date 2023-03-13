@@ -1,12 +1,7 @@
-﻿
-using ContactService.Api.Controllers;
+﻿using ContactService.Api.Controllers;
 using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
 using System.Net;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ContactService.Api.UnitTest.Controllers
 {
@@ -19,11 +14,10 @@ namespace ContactService.Api.UnitTest.Controllers
         public void Setup()
         {
             _mediator = GetFakeMediator();
-
         }
 
         [Test]
-        public async Task PersonController_CreatePersonControllerWithMediator_Succesfull()
+        public void PersonController_CreatePersonControllerWithMediator_Succesfull()
         {
             PersonController c = new PersonController(_mediator);
             Assert.Pass($"{nameof(PersonController)} created successfully");
@@ -43,7 +37,7 @@ namespace ContactService.Api.UnitTest.Controllers
         public async Task PersonController_AddAsyncValidaData_CreatePersonResponse()
         {
             PersonController c = new PersonController(_mediator);
-            var req = new CreatePersonRequest { Name = "ismail", Surname = "Özdemir", Company = "github" };
+            var req = new CreatePersonCommand { Name = "ismail", Surname = "Özdemir", Company = "github" };
             var res = await c.AddAsync(req);
 
 
@@ -63,7 +57,7 @@ namespace ContactService.Api.UnitTest.Controllers
             var req = new CreatePersonResponse { PersonId = Guid.NewGuid() };
             Mock<IMediator> mediator = new Mock<IMediator>();
 
-            mediator.Setup(m => m.Send(It.IsAny<AddPersonCommand>(), It.IsAny<CancellationToken>()))
+            mediator.Setup(m => m.Send(It.IsAny<CreatePersonCommand>(), It.IsAny<CancellationToken>()))
                                  .ReturnsAsync(new CreatePersonResponse { PersonId = Guid.NewGuid() });
 
 
