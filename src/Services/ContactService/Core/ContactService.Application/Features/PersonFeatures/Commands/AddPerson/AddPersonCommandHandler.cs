@@ -22,7 +22,7 @@ namespace ContactService.Application.Features.PersonFeatures.Commands
         public async Task<CreatePersonResponse> Handle(AddPersonCommand request, CancellationToken cancellationToken)
         {
 
-            Person person = _mapper.Map<Person>(request)!;
+            Person person = _mapper.Map<Person>(request.data);
             var newPerson = await _personRepository.AddAsync(person);
             var result = _mapper.Map<CreatePersonResponse>(newPerson);
             return result;

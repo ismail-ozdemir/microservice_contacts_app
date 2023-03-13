@@ -2,7 +2,7 @@
 using ContactService.Application.Features.PersonFeatures.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Net;
 
 namespace ContactService.Api.Controllers
 {
@@ -17,14 +17,14 @@ namespace ContactService.Api.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-
+        // TODO :  badrequest dönüşleri
         [HttpPost]
+        [ProducesResponseType(typeof(CreatePersonResponse), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> AddAsync(CreatePersonRequest request)
         {
             var command = new AddPersonCommand(request);
-            var person = await _mediator.Send(command);
-
-            return Ok(person);
+            var entity = await _mediator.Send(command);
+            return new ObjectResult(entity) { StatusCode = StatusCodes.Status201Created };
         }
     }
 }

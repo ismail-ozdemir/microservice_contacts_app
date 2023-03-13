@@ -17,3 +17,4 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("baf2d80e-8377-4be1-ab93-8b8aa5bc1c0a")]
 [assembly: InternalsVisibleTo("ContactService.Application.UnitTest")]
+[assembly: InternalsVisibleTo("ContactService.Api.UnitTest")]
