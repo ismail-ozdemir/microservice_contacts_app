@@ -25,4 +25,8 @@
     <ProjectReference Include="..\..\Infrastructure\ContactService.Persistence\ContactService.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\PersonFeatures\Queries\" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,6 @@
 ﻿using ContactService.Application.Interfaces.Repository;
-using ContactService.Application.Interfaces.Services;
 using ContactService.Persistence.Concrete.Repositories;
-using ContactService.Persistence.Concrete.Services;
+
 using ContactService.Persistence.Configurations;
 using ContactService.Persistence.Context;
 using Microsoft.AspNetCore.Builder;
@@ -33,7 +32,6 @@ namespace ContactService.Persistence.Extentions
             });
 
             services.AddScoped<IPersonRepository, PersonRepository>();
-            services.AddScoped<IPersonService, PersonService>();
         }
 
 

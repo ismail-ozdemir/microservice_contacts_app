@@ -1,8 +1,8 @@
-﻿using ContactService.Application.Dto.Person;
-using ContactService.Application.Interfaces.Services;
-using ContactService.Application.Wrappers;
+﻿using ContactService.Application.Dto.PersonDto;
+using ContactService.Application.Features.PersonFeatures.Commands;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
+
 
 namespace ContactService.Api.Controllers
 {
@@ -10,21 +10,21 @@ namespace ContactService.Api.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private readonly IPersonService personService;
+        private readonly IMediator _mediator;
 
-        public PersonController(IPersonService personService)
+        public PersonController(IMediator mediator)
         {
-            this.personService = personService;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
 
         [HttpPost]
-        [ProducesResponseType(typeof(ServiceResponse<CreatePersonResponse>), 200)]
-        [ProducesResponseType(typeof(ValidationErrorResponse), 400)]
         public async Task<IActionResult> AddAsync(CreatePersonRequest request)
         {
-            var response = await personService.AddAsync(request);
-            return Ok(response);
+            var command = new AddPersonCommand(request);
+            var person = await _mediator.Send(command);
+
+            return Ok(person);
         }
     }
 }
