@@ -5,7 +5,7 @@ using ContactService.Application.Mapping;
 using ContactService.Domain.Entities;
 using Moq;
 
-namespace ContactService.Application.UnitTest.Features.PersonFeatures.Commands
+namespace Features.PersonFeatures.Commands
 {
     public class CreatePersonCommandHandler_UnitTest
     {

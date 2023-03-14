@@ -2,7 +2,7 @@
 using ContactService.Application.Validators.Person;
 using FluentValidation.TestHelper;
 
-namespace ContactService.Application.UnitTest.Validators.PersonValidators
+namespace Validators.PersonValidators
 {
     public class RemovePersonValidator_UnitTest
     {

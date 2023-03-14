@@ -3,7 +3,7 @@ using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
 using System.Net;
 
-namespace ContactService.Api.UnitTest.Controllers
+namespace Controllers
 {
     public class PersonController_UnitTest
     {

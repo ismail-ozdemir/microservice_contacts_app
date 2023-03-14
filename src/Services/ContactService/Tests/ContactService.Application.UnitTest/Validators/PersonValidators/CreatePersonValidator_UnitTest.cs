@@ -1,7 +1,8 @@
 ﻿using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Validators.Person;
+using FluentValidation.TestHelper;
 
-namespace ContactService.Application.UnitTest.Validators.PersonValidators
+namespace Validators.PersonValidators
 {
     public class CreatePersonValidator_UnitTest
     {
@@ -22,9 +23,10 @@ namespace ContactService.Application.UnitTest.Validators.PersonValidators
                 Surname = "özdemir",
                 Company = "netcad"
             };
-            var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Name) && e.ErrorCode == "NotEmptyValidator").Any();
-            Assert.IsTrue(result);
+            var result = validator.TestValidate(req);
+            result.ShouldHaveValidationErrorFor(person => person.Name)
+                  .WithErrorCode("NotEmptyValidator")
+                  .WithErrorMessage("alan boş olamaz.");
         }
         [Test]
         public void CreatePersonValidator_NameLengthLessThan3_NotValid()
@@ -167,6 +169,7 @@ namespace ContactService.Application.UnitTest.Validators.PersonValidators
             bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Company) && e.ErrorCode == "MaximumLengthValidator").Any();
             Assert.IsFalse(result, $"{nameof(CreatePersonCommand.Company)} alanı 100 karakterden uzun olamaz.");
         }
+
         #endregion
 
     }

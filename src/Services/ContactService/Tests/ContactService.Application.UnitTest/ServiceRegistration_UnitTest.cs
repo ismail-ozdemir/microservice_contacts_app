@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using FluentValidation;
-using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Validators.Person;
 using ContactService.Application.Features.PersonFeatures.Commands;
 
