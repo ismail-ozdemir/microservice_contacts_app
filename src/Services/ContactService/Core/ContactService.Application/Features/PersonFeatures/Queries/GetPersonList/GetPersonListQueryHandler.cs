@@ -20,7 +20,7 @@ namespace ContactService.Application.Features.PersonFeatures.Queries
         public async Task<PagedResult<PersonDto>> Handle(GetPersonListQuery request, CancellationToken cancellationToken)
         {
 
-            var personList = await _personRepository.GetPersonsAsync(request.Filter, cancellationToken)!;
+            var personList = await _personRepository.GetPersonsAsync(request.Filter, cancellationToken);
             return _mapper.Map<PagedResult<PersonDto>>(personList);
         }
 

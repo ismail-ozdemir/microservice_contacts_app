@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
+using ContactService.Application.Helpers.Pagination;
 using ContactService.Application.ViewModels.PersonVms;
 using ContactService.Domain.Entities;
 
@@ -17,6 +18,8 @@ namespace ContactService.Application.Mapping
             CreateMap<Person, CreatePersonResponseDto>().ForMember(t => t.PersonId, opt => opt.MapFrom(s => s.Id));
 
             CreateMap<PersonWm, PersonDto>();
+            CreateMap<PagedResult<PersonWm>, PagedResult<PersonDto>>();
+
         }
 
     }

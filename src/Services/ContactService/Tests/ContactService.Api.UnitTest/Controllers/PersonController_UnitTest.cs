@@ -1,6 +1,7 @@
 ﻿using ContactService.Api.Controllers;
 using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
+using ContactService.Application.Features.PersonFeatures.Queries;
 using System.Net;
 
 namespace Controllers
@@ -35,6 +36,23 @@ namespace Controllers
         }
 
         #endregion
+
+
+
+        [Test]
+        public async Task PersonController_GetPersons_PagedResult_Ok()
+        {
+            PersonController c = new PersonController(_mediator);
+            var res = await c.GetPersons(new());
+
+            Assert.That(res.GetType(), Is.EqualTo(typeof(OkObjectResult)), $"expected response type :  {nameof(OkObjectResult)}");
+            if (res is ObjectResult respose)
+            {
+                Assert.IsNotNull(respose.StatusCode, "status code boş dönmemeli.");
+                Assert.That((int)respose.StatusCode!, Is.EqualTo((int)HttpStatusCode.OK));
+            }
+        }
+
 
         [Test]
         public async Task PersonController_AddAsyncValidaData_CreatePersonResponse()
@@ -75,23 +93,24 @@ namespace Controllers
 
         private IMediator GetFakeMediator()
         {
-            // TODO : parametreye göre dönüş değerleri doldurulacak
-            var req = new CreatePersonResponseDto { PersonId = Guid.NewGuid() };
             Mock<IMediator> mediator = new Mock<IMediator>();
 
             mediator.Setup(m => m.Send(It.IsAny<CreatePersonCommand>(), It.IsAny<CancellationToken>()))
-                                 .ReturnsAsync(new CreatePersonResponseDto { PersonId = Guid.NewGuid() });
-
+                                 .Returns<CreatePersonCommand, CancellationToken>((command, token) => Task.FromResult(new CreatePersonResponseDto
+                                 {
+                                     PersonId = Guid.NewGuid(),
+                                     Name = command.Name,
+                                     Surname = command.Surname,
+                                     Company = command.Company
+                                 }));
 
             mediator.Setup(m => m.Send(It.IsAny<RemovePersonCommand>(), It.IsAny<CancellationToken>()))
                                  .ReturnsAsync("success");
 
 
+
             return mediator.Object;
         }
-        //.Returns<AddPersonCommand>((command) => Task.FromResult(new CreatePersonResponse { PersonId = Guid.NewGuid(), Name = command.data.Name, Surname = command.data.Surname, Company = command.data.Company }));
-
-
 
     }
 }

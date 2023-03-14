@@ -20,8 +20,9 @@ namespace ContactService.Api.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [HttpGet]
         [ProducesResponseType(typeof(PagedResult<PersonDto>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetPersons(PersonFilter filter)
+        public async Task<IActionResult> GetPersons([FromQuery] PersonFilter filter)
         {
             var query = new GetPersonListQuery(filter);
             var result = await _mediator.Send(query, CancellationToken.None);
