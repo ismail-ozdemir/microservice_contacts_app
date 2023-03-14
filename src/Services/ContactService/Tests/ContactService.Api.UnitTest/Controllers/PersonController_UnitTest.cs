@@ -53,7 +53,7 @@ namespace ContactService.Api.UnitTest.Controllers
 
         private IMediator GetFakeMediator()
         {
-            // TO DO : parametreye göre dönüş değerleri doldurulacak
+            // TODO : parametreye göre dönüş değerleri doldurulacak
             var req = new CreatePersonResponse { PersonId = Guid.NewGuid() };
             Mock<IMediator> mediator = new Mock<IMediator>();
 
