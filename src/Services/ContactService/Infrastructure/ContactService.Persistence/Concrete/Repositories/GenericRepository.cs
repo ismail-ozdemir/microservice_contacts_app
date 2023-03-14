@@ -26,7 +26,12 @@ namespace ContactService.Persistence.Concrete.Repositories
             await _context.SaveChangesAsync();
             return entity;
         }
-        public Task<bool> RemoveAsync(T entity) => Task.FromResult(Table.Remove(entity).State == EntityState.Deleted);
+        public async Task RemoveAsync(T entity)
+        {
+            var result = Table.Remove(entity);
+            var r = await _context.SaveChangesAsync();
+
+        }
 
         public async virtual Task<T?> GetByIdAsync(Guid id) => await Table.FindAsync(id);
 

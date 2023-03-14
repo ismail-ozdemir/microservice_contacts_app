@@ -16,6 +16,8 @@ namespace ContactService.Api.UnitTest.Controllers
             _mediator = GetFakeMediator();
         }
 
+
+        #region Create Person Controller
         [Test]
         public void PersonController_CreatePersonControllerWithMediator_Succesfull()
         {
@@ -23,7 +25,7 @@ namespace ContactService.Api.UnitTest.Controllers
             Assert.Pass($"{nameof(PersonController)} created successfully");
         }
         [Test]
-        public void PersonController_CreatePersonControllerWithMediator_ArgumentNullException()
+        public void PersonController_CreatePersonControllerWithNotMediator_ArgumentNullException()
         {
 
             var ex = Assert.Catch(() => { PersonController c = new(null); });
@@ -32,6 +34,7 @@ namespace ContactService.Api.UnitTest.Controllers
 
         }
 
+        #endregion
 
         [Test]
         public async Task PersonController_AddAsyncValidaData_CreatePersonResponse()
@@ -49,11 +52,30 @@ namespace ContactService.Api.UnitTest.Controllers
             }
         }
 
-        //.Returns<AddPersonCommand>((command) => Task.FromResult(new CreatePersonResponse { PersonId = Guid.NewGuid(), Name = command.data.Name, Surname = command.data.Surname, Company = command.data.Company }));
+
+        [Test]
+        public async Task PersonController_RemoveAsync_OK()
+        {
+            PersonController c = new PersonController(_mediator);
+            var command = new RemovePersonCommand { Id = Guid.NewGuid() };
+            var res = await c.RemoveAsync(command);
+
+
+            Assert.That(res.GetType(), Is.EqualTo(typeof(OkObjectResult)), $"expected response type :  {nameof(OkObjectResult)}");
+            if (res is OkObjectResult respose)
+            {
+                Assert.IsNotNull(respose.StatusCode, "status code boş dönmemeli.");
+                Assert.That((int)respose.StatusCode!, Is.EqualTo((int)HttpStatusCode.OK));
+            }
+
+        }
+
+
+
 
         private IMediator GetFakeMediator()
         {
-            // TO DO : parametreye göre dönüş değerleri doldurulacak
+            // TODO : parametreye göre dönüş değerleri doldurulacak
             var req = new CreatePersonResponse { PersonId = Guid.NewGuid() };
             Mock<IMediator> mediator = new Mock<IMediator>();
 
@@ -61,9 +83,14 @@ namespace ContactService.Api.UnitTest.Controllers
                                  .ReturnsAsync(new CreatePersonResponse { PersonId = Guid.NewGuid() });
 
 
+            mediator.Setup(m => m.Send(It.IsAny<RemovePersonCommand>(), It.IsAny<CancellationToken>()))
+                                 .ReturnsAsync("success");
+
 
             return mediator.Object;
         }
+        //.Returns<AddPersonCommand>((command) => Task.FromResult(new CreatePersonResponse { PersonId = Guid.NewGuid(), Name = command.data.Name, Surname = command.data.Surname, Company = command.data.Company }));
+
 
 
     }

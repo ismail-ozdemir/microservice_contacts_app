@@ -5,7 +5,7 @@ using ContactService.Application.Validators.Person;
 using FluentValidation.TestHelper;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 
-namespace ContactService.Application.UnitTest.Validators
+namespace ContactService.Application.UnitTest.Validators.PersonValidators
 {
     public class CreatePersonValidator_UnitTest
     {

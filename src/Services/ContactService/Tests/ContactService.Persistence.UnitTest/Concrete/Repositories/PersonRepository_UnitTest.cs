@@ -24,6 +24,23 @@ namespace Concrete.Repositories
             Assert.IsTrue(response.Id != Guid.Empty && response.Name == person.Name && response.Surname == person.Surname && response.Company == person.Company);
         }
 
+        [Test]
+        public async Task PersonRepository_RemovePerson_Success()
+        {
+
+            var context = GetContactDbContext();
+            var fakeData = GetFakePersons();
+            await context.Persons.AddRangeAsync(fakeData);
+            await context.SaveChangesAsync();
+
+            var repo = new PersonRepository(context);
+            var person = fakeData.First();
+
+            await repo.RemoveAsync(person);
+            Assert.Pass();
+
+        }
+
 
 
 
@@ -41,6 +58,19 @@ namespace Concrete.Repositories
 
             var context = new ContactsContext(builder.Options);
             return context;
+        }
+
+
+
+        private IEnumerable<Person> GetFakePersons()
+        {
+            return new List<Person>() {
+                new Person { Id = Guid.NewGuid(), Name = "ismail", Surname = "özdemir", Company = "github" },
+                new Person { Id = Guid.NewGuid(), Name = "tn1", Surname = "tsn1", Company = "tc1" },
+                new Person { Id = Guid.NewGuid(), Name = "tn2", Surname = "tsn1", Company = "tc1" },
+                new Person { Id = Guid.NewGuid(), Name = "tn3", Surname = "tsn1", Company = "tc1" }
+            };
+
         }
 
     }
