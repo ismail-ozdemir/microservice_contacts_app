@@ -1,8 +1,8 @@
-﻿using ContactService.Application.Wrappers;
+﻿
 
 namespace ContactService.Application.Dto.PersonDto
 {
-    public class CreatePersonResponse
+    public class CreatePersonResponseDto
     {
         public Guid PersonId { get; set; }
         public string Name { get; set; }

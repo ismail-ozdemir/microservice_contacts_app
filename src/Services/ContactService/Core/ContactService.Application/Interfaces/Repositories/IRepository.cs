@@ -7,7 +7,5 @@ namespace ContactService.Application.Interfaces.Repository
         Task<T?> GetByIdAsync(Guid id);
         Task<T> AddAsync(T entity);
         Task RemoveAsync(T entity);
-        Task<IEnumerable<T>> GetAllAsync(bool isTracking = false);
-
     }
 }

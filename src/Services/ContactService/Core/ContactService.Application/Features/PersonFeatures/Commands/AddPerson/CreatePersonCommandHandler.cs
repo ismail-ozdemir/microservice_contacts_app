@@ -7,7 +7,7 @@ using MediatR;
 
 namespace ContactService.Application.Features.PersonFeatures.Commands
 {
-    public class CreatePersonCommandHandler : IRequestHandler<CreatePersonCommand, CreatePersonResponse>
+    public class CreatePersonCommandHandler : IRequestHandler<CreatePersonCommand, CreatePersonResponseDto>
     {
 
         private readonly IMapper _mapper;
@@ -19,12 +19,12 @@ namespace ContactService.Application.Features.PersonFeatures.Commands
             _personRepository = personRepository;
         }
 
-        public async Task<CreatePersonResponse> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
+        public async Task<CreatePersonResponseDto> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
         {
 
             Person person = _mapper.Map<Person>(request);
             var newPerson = await _personRepository.AddAsync(person);
-            var result = _mapper.Map<CreatePersonResponse>(newPerson);
+            var result = _mapper.Map<CreatePersonResponseDto>(newPerson);
             return result;
 
         }

@@ -1,5 +1,8 @@
 ﻿using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
+using ContactService.Application.Features.PersonFeatures.Queries;
+using ContactService.Application.Filters.PersonFilters;
+using ContactService.Application.Helpers.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -17,9 +20,18 @@ namespace ContactService.Api.Controllers
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [ProducesResponseType(typeof(PagedResult<PersonDto>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetPersons(PersonFilter filter)
+        {
+            var query = new GetPersonListQuery(filter);
+            var result = await _mediator.Send(query, CancellationToken.None);
+            return Ok(result);
+        }
+
+
         // TODO :  badrequest dönüşleri
         [HttpPost]
-        [ProducesResponseType(typeof(CreatePersonResponse), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(CreatePersonResponseDto), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> AddAsync(CreatePersonCommand command)
         {
             var entity = await _mediator.Send(command);

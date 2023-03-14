@@ -76,11 +76,11 @@ namespace ContactService.Api.UnitTest.Controllers
         private IMediator GetFakeMediator()
         {
             // TODO : parametreye göre dönüş değerleri doldurulacak
-            var req = new CreatePersonResponse { PersonId = Guid.NewGuid() };
+            var req = new CreatePersonResponseDto { PersonId = Guid.NewGuid() };
             Mock<IMediator> mediator = new Mock<IMediator>();
 
             mediator.Setup(m => m.Send(It.IsAny<CreatePersonCommand>(), It.IsAny<CancellationToken>()))
-                                 .ReturnsAsync(new CreatePersonResponse { PersonId = Guid.NewGuid() });
+                                 .ReturnsAsync(new CreatePersonResponseDto { PersonId = Guid.NewGuid() });
 
 
             mediator.Setup(m => m.Send(It.IsAny<RemovePersonCommand>(), It.IsAny<CancellationToken>()))

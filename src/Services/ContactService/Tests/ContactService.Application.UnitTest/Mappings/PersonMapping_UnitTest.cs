@@ -43,7 +43,7 @@ namespace ContactService.Application.UnitTest.Mappings
         public void PersonMapping_ConvertPersonToCreatePersonResponse_IsValid()
         {
             var req = new Person { Id = Guid.NewGuid(), Name = "ismail", Surname = "Özdemir", Company = "github" };
-            var res = _mapper.Map<CreatePersonResponse>(req);
+            var res = _mapper.Map<CreatePersonResponseDto>(req);
             Assert.IsTrue(
                 req.Id == res.PersonId &&
                 req.Name == res.Name &&
