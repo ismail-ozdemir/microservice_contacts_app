@@ -4,7 +4,7 @@ using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Mapping;
 using ContactService.Domain.Entities;
 
-namespace ContactService.Application.UnitTest.Mappings
+namespace Mappings
 {
     public class PersonMapping_UnitTest
     {

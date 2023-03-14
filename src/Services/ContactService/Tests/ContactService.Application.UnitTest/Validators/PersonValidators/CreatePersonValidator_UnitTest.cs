@@ -1,11 +1,8 @@
-﻿using ContactService.Application.Behaviours;
-using ContactService.Application.Dto.PersonDto;
-using ContactService.Application.Features.PersonFeatures.Commands;
+﻿using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Validators.Person;
 using FluentValidation.TestHelper;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
-namespace ContactService.Application.UnitTest.Validators.PersonValidators
+namespace Validators.PersonValidators
 {
     public class CreatePersonValidator_UnitTest
     {

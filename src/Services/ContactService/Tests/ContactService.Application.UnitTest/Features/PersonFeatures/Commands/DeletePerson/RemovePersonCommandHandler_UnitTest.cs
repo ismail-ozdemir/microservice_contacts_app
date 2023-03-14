@@ -3,7 +3,7 @@ using ContactService.Application.Interfaces.Repository;
 using ContactService.Domain.Entities;
 using Moq;
 
-namespace ContactService.Application.UnitTest.Features.PersonFeatures.Commands
+namespace Features.PersonFeatures.Commands
 {
     public class RemovePersonCommandHandler_UnitTest
     {
