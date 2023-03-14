@@ -7,7 +7,7 @@ using Moq;
 
 namespace ContactService.Application.UnitTest.Features.PersonFeatures.Commands
 {
-    public class CreatePersonCommanddHandler_UnitTest
+    public class CreatePersonCommandHandler_UnitTest
     {
 
         private IMapper _mapper;
