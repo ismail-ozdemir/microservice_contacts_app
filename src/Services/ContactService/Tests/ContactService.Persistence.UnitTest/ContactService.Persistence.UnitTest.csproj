@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\ContactService.Application\ContactService.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ContactService.Persistence\ContactService.Persistence.csproj" />
   </ItemGroup>
 

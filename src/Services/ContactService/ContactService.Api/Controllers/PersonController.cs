@@ -25,5 +25,14 @@ namespace ContactService.Api.Controllers
             var entity = await _mediator.Send(command);
             return new ObjectResult(entity) { StatusCode = StatusCodes.Status201Created };
         }
+
+
+        [HttpDelete]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> RemoveAsync(RemovePersonCommand command)
+        {
+            string result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 }
