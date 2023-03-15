@@ -1,4 +1,5 @@
-﻿using ContactService.Application.Features.PersonFeatures.Commands;
+﻿using ContactService.Application.Exceptions;
+using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Domain.Entities;
 using Moq;
@@ -7,7 +8,6 @@ namespace Features.PersonFeatures.Commands
 {
     public class RemovePersonCommandHandler_UnitTest
     {
-
 
         private IPersonRepository _personRepository;
 
@@ -26,7 +26,7 @@ namespace Features.PersonFeatures.Commands
             RemovePersonCommandHandler handler = new(_personRepository);
             RemovePersonCommand command = new() { Id = Guid.Empty };
 
-            Assert.ThrowsAsync<ArgumentNullException>(() => handler.Handle(command, CancellationToken.None));
+            Assert.ThrowsAsync<RecordNotFoundException>(() => handler.Handle(command, CancellationToken.None));
         }
 
         [Test]

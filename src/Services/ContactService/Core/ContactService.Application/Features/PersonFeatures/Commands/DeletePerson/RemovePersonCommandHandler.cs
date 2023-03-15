@@ -1,4 +1,5 @@
-﻿using ContactService.Application.Interfaces.Repository;
+﻿using ContactService.Application.Exceptions;
+using ContactService.Application.Interfaces.Repository;
 using MediatR;
 
 namespace ContactService.Application.Features.PersonFeatures.Commands
@@ -16,7 +17,7 @@ namespace ContactService.Application.Features.PersonFeatures.Commands
 
             var person = await _personRepository.GetByIdAsync(request.Id);
             if (person == null)
-                throw new ArgumentNullException("person", "record not found exception yazılmalı");
+                throw new RecordNotFoundException(nameof(person));
 
             await _personRepository.RemoveAsync(person);
 
