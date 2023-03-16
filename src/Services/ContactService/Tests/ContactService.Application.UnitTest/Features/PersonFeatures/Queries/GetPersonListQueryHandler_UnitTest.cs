@@ -16,7 +16,6 @@ namespace Features.PersonFeatures.Queries
         private IMapper _mapper;
         private IPersonRepository _personRepository;
 
-        // TODO : create null argument test
 
         [SetUp]
         public void Setup()
@@ -25,10 +24,10 @@ namespace Features.PersonFeatures.Queries
             _personRepository = CreatePersonRepository();
         }
 
-        [Test,TestCaseSource(nameof(PaginationCase))]
+        [Test, TestCaseSource(nameof(ConstractureArgsCase))]
         public void GetPersonListQueryHandler_CreateWithNullConstuctureParameters_ArgumentNullException(IPersonRepository pr, IMapper mp)
         {
-            var ex = Assert.Catch(() => { GetPersonListQueryHandler handle = new(personRepository: pr, mapper: mp); });
+            var ex = Assert.Catch(() => { new GetPersonListQueryHandler(personRepository: pr, mapper: mp); });
             Assert.IsNotNull(ex);
             Assert.That(ex.GetType(), Is.EqualTo(typeof(ArgumentNullException)), $"beklenen hata türü {nameof(ArgumentNullException)}");
 
@@ -70,7 +69,7 @@ namespace Features.PersonFeatures.Queries
             return mock.Object;
         }
 
-        public static object[] PaginationCase =
+        public static object[] ConstractureArgsCase =
      {
                 new object[] { null, new Mock<IMapper>().Object },
                 new object[] { new Mock<IPersonRepository>().Object, null }

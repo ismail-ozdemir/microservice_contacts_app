@@ -22,12 +22,13 @@ namespace ContactService.Persistence.Concrete.Repositories
         }
         public async Task RemoveAsync(T entity)
         {
-            var result = Table.Remove(entity);
-            var r = await _context.SaveChangesAsync();
-
+            Table.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public async virtual Task<T?> GetByIdAsync(Guid id) => await Table.FindAsync(id);
-
+        public async virtual Task<T?> GetByIdAsync(Guid id)
+        {
+            return await Table.FindAsync(id);
+        }
     }
 }

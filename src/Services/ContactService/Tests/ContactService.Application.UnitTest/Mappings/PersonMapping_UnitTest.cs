@@ -3,6 +3,7 @@ using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Helpers.Pagination;
 using ContactService.Application.Mapping;
+using ContactService.Application.ViewModels;
 using ContactService.Application.ViewModels.PersonVms;
 using ContactService.Domain.Entities;
 
@@ -79,6 +80,22 @@ namespace Mappings
                 req.PageSize == res.PageSize &&
                 req.TotalPageCount == res.TotalPageCount &&
                 req.TotalRecordCount == res.TotalRecordCount);
+
+        }
+
+
+
+        [Test]
+        public void PersonMapping_Convert_ContactInfoWm_To_ContactInfoDto_IsValid()
+        {
+            ContactInfoWm req = new() { InfoId = Guid.NewGuid(), InfoType = "phone", InfoContent = "05551112233" };
+
+            var res = _mapper.Map<ContactInfoDto>(req);
+
+            Assert.IsNotNull(req);
+            Assert.IsTrue(req.InfoId == res.InfoId);
+            Assert.IsTrue(req.InfoType == res.InfoType);
+            Assert.IsTrue(req.InfoContent == res.InfoDetail);
 
         }
 

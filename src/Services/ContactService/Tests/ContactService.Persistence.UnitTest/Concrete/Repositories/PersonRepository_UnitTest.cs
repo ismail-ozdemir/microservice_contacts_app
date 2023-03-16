@@ -44,7 +44,6 @@ namespace Concrete.Repositories
 
             await repo.RemoveAsync(person);
             Assert.Pass();
-
         }
 
 

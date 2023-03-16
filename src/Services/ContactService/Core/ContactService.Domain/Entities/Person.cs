@@ -1,7 +1,9 @@
 ﻿using ContactService.Domain.Common;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ContactService.Domain.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class Person : BaseEntity
     {
         public Guid Id { get; set; }

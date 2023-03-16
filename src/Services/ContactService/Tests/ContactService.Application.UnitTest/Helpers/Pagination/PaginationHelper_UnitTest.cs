@@ -46,6 +46,27 @@ namespace Helpers.Pagination
             //Assert.That(result.Results.Count, Is.EqualTo(_list.Count),"kayıt sayısı");
             Assert.That(result.Results.Count, Is.GreaterThanOrEqualTo(0), "kayıt sayısı");
         }
+        [Test, TestCaseSource(nameof(PaginationCase))]
+        public async Task PaginationHelper_GetPagedAsync_PagedData_With_Paginatin_Values(int pageno, int pagesize)
+        {
+
+            var query = _list.AsQueryable();
+
+
+            double pageCount = (double)_list.Count / pagesize;
+            int totalPageCount = (int)Math.Ceiling(pageCount);
+
+
+
+            var result = await PaginationHelper.GetPagedAsync(query, pageno, pagesize);
+
+
+            Assert.That(result.PageNo, Is.EqualTo(pageno), "sayfa no");
+            Assert.That(result.PageSize, Is.EqualTo(pagesize), "sayfanın boyutu");
+            Assert.That(result.TotalPageCount, Is.EqualTo(totalPageCount), "toplam sayfa sayısı");
+            Assert.That(result.TotalRecordCount, Is.EqualTo(_list.Count), "toplam kayıt sayısı");
+            Assert.That(result.Results.Count, Is.GreaterThanOrEqualTo(0), "kayıt sayısı");
+        }
 
 
 

@@ -5,9 +5,9 @@ namespace ContactService.Application.Filters.PersonFilters
     public class PersonFilter : PagedFilter
     {
 
-        public class ByCompany : PersonFilter
+        public class ById : PersonFilter
         {
-            public string Company { get; set; }
+            public Guid Id { get; set; }
         }
     }
 }

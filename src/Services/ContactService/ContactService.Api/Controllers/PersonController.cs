@@ -29,6 +29,16 @@ namespace ContactService.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetContactInfo")]
+        [ProducesResponseType(typeof(PersonDto.WithContactInfo), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetPersonContactInfo([FromQuery] PersonFilter.ById filter)
+        {
+            var query = new GetPersonContactInfoList(filter);
+            var result = await _mediator.Send(query, CancellationToken.None);
+            return Ok(result);
+        }
+
+
 
         // TODO :  badrequest dönüşleri
         [HttpPost]
