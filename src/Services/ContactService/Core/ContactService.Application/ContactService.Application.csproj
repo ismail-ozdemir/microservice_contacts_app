@@ -21,4 +21,8 @@
     <ProjectReference Include="..\ContactService.Domain\ContactService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\ContactInfoFeatures\Queries\" />
+  </ItemGroup>
+
 </Project>

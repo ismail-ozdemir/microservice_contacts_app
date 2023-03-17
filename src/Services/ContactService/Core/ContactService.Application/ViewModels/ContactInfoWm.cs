@@ -8,9 +8,9 @@ namespace ContactService.Application.ViewModels
         public string InfoType { get; set; } = string.Empty;
         public string InfoContent { get; set; } = string.Empty;
 
-        public class WithPersonId : ContactInfoWm
-        {
-            public Guid PersonId { get; set; }
-        }
+        //public class WithPersonId : ContactInfoWm
+        //{
+        //    public Guid PersonId { get; set; }
+        //}
     }
 }

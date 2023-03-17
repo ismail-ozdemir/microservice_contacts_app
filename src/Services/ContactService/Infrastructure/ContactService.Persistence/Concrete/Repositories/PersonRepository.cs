@@ -1,5 +1,4 @@
-﻿using ContactService.Application.Dto.PersonDto;
-using ContactService.Application.Filters.PersonFilters;
+﻿using ContactService.Application.Filters.PersonFilters;
 using ContactService.Application.Helpers.Pagination;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.ViewModels.PersonVms;
@@ -13,7 +12,9 @@ namespace ContactService.Persistence.Concrete.Repositories
     {
         public PersonRepository(ContactsContext context) : base(context)
         {
+            
         }
+
 
         public async Task<PagedResult<PersonWm>> GetPersonsAsync(PersonFilter filter, CancellationToken cancellationToken)
         {
@@ -27,6 +28,12 @@ namespace ContactService.Persistence.Concrete.Repositories
                                });
 
             return await PaginationHelper.GetPagedAsync(query: query, filter.PageNo, filter.PageSize);
+        }
+
+
+        public Task<bool> CheckedPersonByIdAsync(Guid PersonId)
+        {
+            return Task.FromResult(_context.Persons.Any(x => x.Id == PersonId));
         }
     }
 }

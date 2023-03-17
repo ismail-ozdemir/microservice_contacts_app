@@ -32,6 +32,7 @@ namespace ContactService.Persistence.Extentions
             });
 
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IContactInfoRepository, ContactInfoRepository>();
         }
 
 

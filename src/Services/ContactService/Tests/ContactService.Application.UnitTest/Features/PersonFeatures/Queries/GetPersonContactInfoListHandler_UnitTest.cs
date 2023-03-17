@@ -76,8 +76,6 @@ namespace ContactService.Application.UnitTest.Features.PersonFeatures.Queries
                 new object[] { null,null,null, "mapper"},
                 new object[] { new Mock<IMapper>().Object,null,null,"personRepository" },
                 new object[] { new Mock<IMapper>().Object,new Mock<IPersonRepository>().Object,null,"contactInfoRepository" }
-
-
         };
 
 

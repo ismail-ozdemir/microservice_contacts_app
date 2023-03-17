@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ContactService.Application.Dto.ContactInfo;
 using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Exceptions;
 using ContactService.Application.Filters.PersonFilters;

@@ -2,17 +2,17 @@
 using ContactService.Application.Helpers.Pagination;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.ViewModels;
+using ContactService.Domain.Entities;
 using ContactService.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactService.Persistence.Concrete.Repositories
 {
-    internal class ContactInfoRepository : IContactInfoRepository
+    internal class ContactInfoRepository : GenericRepository<ContactInformation>, IContactInfoRepository
     {
-        private readonly ContactsContext _context;
-        public ContactInfoRepository(ContactsContext contactsContext)
+        public ContactInfoRepository(ContactsContext contactsContext) : base(contactsContext)
         {
-            _context = contactsContext ?? throw new ArgumentNullException(nameof(contactsContext));
+
         }
 
         public async Task<PagedResult<ContactInfoWm>> GetContactInfoListByPersonAsync(PersonFilter.ById filter)

@@ -1,4 +1,4 @@
-﻿
+﻿using ContactService.Application.Dto.ContactInfo;
 using ContactService.Application.Helpers.Pagination;
 
 namespace ContactService.Application.Dto.PersonDto
@@ -12,19 +12,9 @@ namespace ContactService.Application.Dto.PersonDto
 
         public class WithContactInfo : PersonDto
         {
-            public WithContactInfo()
-            {
-                ContactInformations = new();
-            }
-            public PagedResult<ContactInfoDto> ContactInformations { get; set; }
+
+            public PagedResult<ContactInfoDto> ContactInformations { get; set; } = new();
         }
 
-    }
-
-    public class ContactInfoDto
-    {
-        public Guid InfoId { get; set; }
-        public string InfoType { get; set; } = string.Empty;
-        public string InfoDetail { get; set; } = string.Empty;
     }
 }

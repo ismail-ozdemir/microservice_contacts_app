@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ContactService.Application.Dto.ContactInfo;
 using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Helpers.Pagination;
@@ -24,8 +25,6 @@ namespace ContactService.Application.Mapping
 
             CreateMap<ContactInfoWm, ContactInfoDto>().ForMember(t => t.InfoDetail, opt => opt.MapFrom(s => s.InfoContent));
             CreateMap<PagedResult<ContactInfoWm>, PagedResult<ContactInfoDto>>();
-
-
 
         }
 
