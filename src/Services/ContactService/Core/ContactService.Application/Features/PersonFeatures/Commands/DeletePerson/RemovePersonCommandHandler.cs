@@ -21,7 +21,7 @@ namespace ContactService.Application.Features.PersonFeatures.Commands
 
             await _personRepository.RemoveAsync(person);
 
-            return $"{request.Id} deleted succesful";
+            return $"{request.Id} deleted succesfull";
         }
     }
 }

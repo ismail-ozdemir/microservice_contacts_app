@@ -28,5 +28,14 @@ namespace ContactService.Api.Controllers
         }
 
 
+        [HttpDelete]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteContactInfo(DeleteContactInfoCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+
     }
 }

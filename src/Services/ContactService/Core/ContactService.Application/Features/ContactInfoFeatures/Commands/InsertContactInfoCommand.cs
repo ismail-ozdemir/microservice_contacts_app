@@ -7,6 +7,9 @@ using MediatR;
 
 namespace ContactService.Application.Features.ContactInfoFeatures
 {
+
+
+
     public class InsertContactInfoCommand : IRequest<SaveContactInfoResponseDto>
     {
         internal InsertContactInfoRequest @params;
@@ -29,8 +32,8 @@ namespace ContactService.Application.Features.ContactInfoFeatures
 
             public async Task<SaveContactInfoResponseDto> Handle(InsertContactInfoCommand request, CancellationToken cancellationToken)
             {
-                if(request==null)
-                   throw new ArgumentNullException(nameof(request));
+                if (request == null)
+                    throw new ArgumentNullException(nameof(request));
 
                 bool hasPerson = await _personRepo.CheckedPersonByIdAsync(request.@params.PersonId);
                 if (!hasPerson)
