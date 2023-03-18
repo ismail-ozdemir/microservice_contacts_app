@@ -12,3 +12,4 @@ namespace ContactService.Application.Validators.ContactInfo
     }
 
 }
+ 
