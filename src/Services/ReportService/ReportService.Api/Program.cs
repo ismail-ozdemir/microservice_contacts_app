@@ -29,7 +29,7 @@ try
     {
         app.UseSwagger();
         app.UseSwaggerUI();
-        app.SetDatabaseMigrations();
+        await app.SetDatabaseMigrations();
     }
 
     app.UseHttpsRedirection();

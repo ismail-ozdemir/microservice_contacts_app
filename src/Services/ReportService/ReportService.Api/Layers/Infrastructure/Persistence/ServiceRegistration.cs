@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Polly.Retry;
+using Polly;
 using ReportService.Application.Abstractions.Repositories;
 using ReportService.Persistence.Concrete;
 using ReportService.Persistence.Configuration;
@@ -27,7 +30,7 @@ namespace ReportService.Persistence
             return services;
         }
 
-        public static void SetDatabaseMigrations(this IApplicationBuilder app)
+        public static async Task SetDatabaseMigrations(this IApplicationBuilder app)
         {
 
             using (var scope = app.ApplicationServices.CreateScope())
@@ -36,12 +39,34 @@ namespace ReportService.Persistence
                 if (context != null)
                 {
                     var logger = scope.ServiceProvider.GetRequiredService<ILogger<ReportContextRmdb>>();
-                    logger.LogInformation("Applying migrations {DbContext}...", nameof(ReportContextRmdb));
-                    context.Database.Migrate();
-                    logger.LogInformation("Applyed migrations {DbContext}...", nameof(ReportContextRmdb));
+                    var policy = CreatePolicyForMigration(logger, nameof(ReportContextRmdb));
+                    await policy.ExecuteAsync(() => ProccessSeedingMigration(context, logger));
                 }
             }
         }
+        private static AsyncRetryPolicy CreatePolicyForMigration(ILogger<ReportContextRmdb> logger, string prefix, int retries = 5)
+        {
+            return Policy.Handle<Npgsql.NpgsqlException>().
+                WaitAndRetryAsync(
+                    retryCount: retries,
+                    sleepDurationProvider: retry => TimeSpan.FromSeconds(5),
+                    onRetry: (exception, timeSpan, retry, ctx) =>
+                    {
+                        logger.LogWarning(exception, "[{prefix}] Exception {ExceptionType} with message {Message} detected on attempt {retry} of {retries}", prefix, exception.GetType().Name, exception.Message, retry, retries);
+                    }
+                );
+        }
+        private static async Task ProccessSeedingMigration(ReportContextRmdb context, ILogger<ReportContextRmdb> logger)
+        {
+            logger.LogInformation("Applying migrations {DbContext}...", nameof(ReportContextRmdb));
+            await context.Database.MigrateAsync();
+            logger.LogInformation("Applyed migrations {DbContext}...", nameof(ReportContextRmdb));
+
+        }
+
+
+
+
 
 
 
@@ -61,9 +86,6 @@ namespace ReportService.Persistence
             });
             services.AddScoped<IReportRepository, ReportRepositoryRmdb>();
         }
-
-
-
         private static void RegisterMangoServices(this IServiceCollection services, MangoSettings settings)
         {
             services.AddScoped(p => new ReportContextMongo(settings));

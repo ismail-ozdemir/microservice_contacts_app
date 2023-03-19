@@ -9,7 +9,7 @@ namespace ReportService.Domain.Entities
         public DateTime RequestDate { get; set; }
         public DateTime? CompletedDate { get; set; }
         public ReportType ReportType { get; set; }
-        public string FileUrl { get; set; } = string.Empty;
+        public string FilePath { get; set; } = string.Empty;
 
     }
 }
