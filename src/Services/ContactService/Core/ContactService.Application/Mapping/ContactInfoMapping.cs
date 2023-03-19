@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using ContactService.Application.Dto.ContactInfo;
+using ContactService.Application.Dto.Report;
+using ContactService.Application.ViewModels;
 using ContactService.Domain.Entities;
 
 namespace ContactService.Application.Mapping
@@ -17,9 +19,11 @@ namespace ContactService.Application.Mapping
 
 
             CreateMap<ContactInformation, SaveContactInfoResponseDto>()
-                //.ConstructUsing((source) => new SaveContactInfoResponseDto(source.Id, source.PersonId, source.InformationType.ToString(), source.Content))
                         .ForMember(t => t.InfoType, opt => opt.MapFrom(s => s.InformationType))
                         .ForMember(t => t.InfoContent, opt => opt.MapFrom(s => s.Content));
+
+
+            CreateMap<ContactReportByLocationVm, ContactReportByLocationDto>();
 
         }
 

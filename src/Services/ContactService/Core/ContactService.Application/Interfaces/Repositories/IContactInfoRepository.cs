@@ -9,5 +9,7 @@ namespace ContactService.Application.Interfaces.Repository
     {
         Task<PagedResult<ContactInfoWm>> GetContactInfoListByPersonAsync(PersonFilter.ById filter);
 
+        Task<ContactReportByLocationVm> GetContactReportByLocation(string LocationName);
+
     }
 }
