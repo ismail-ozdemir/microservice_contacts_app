@@ -1,4 +1,6 @@
 .vs
-/src/BuildingBlocks/EventBus/EventBus.Base/obj
-/src/Services/ContactService/ContactService.Api/obj
-/src/Services/ReportService/ReportService.Api/obj
+sonar-scanner-4.8.0.2856
+.sonarqube
+sonarqubecoverage
+sonar.bat
+src/**/TestResults

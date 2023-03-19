@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "ContactService.Grpc.Protos";
+
+package v_1_0_0;
+
+
+service ContactProtoService {
+  // Sends a greeting
+  rpc GetContactReportByLocation (ContactReportByLocationRequestPm) returns (ContactReportByLocationResponsePm);
+}
+
+// request parameters
+message ContactReportByLocationRequestPm {
+  string locationName = 1;
+}
+
+
+// response models
+message ContactReportByLocationResponsePm {
+    repeated ContactReportPm data = 1;
+}
+message ContactReportPm {
+     string locationName = 1;
+     int64 personCountInLocation = 2;
+     int64 phoneNumberCountInLocation  = 3;
+}
