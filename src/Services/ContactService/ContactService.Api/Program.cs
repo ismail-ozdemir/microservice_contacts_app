@@ -1,6 +1,7 @@
 using Serilog;
-using ContactService.Api.Data.Extentions;
-
+using ContactService.Persistence.Extentions;
+using ContactService.Application;
+using ContactService.Api.Middlewares;
 
 IConfiguration configuration = GetConfiguration();
 Log.Logger = CreateSerilogLogger(configuration);
@@ -19,13 +20,17 @@ try
     builder.Services.AddSwaggerGen();
 
 
+    builder.Services.RegisterApplication();
+    builder.Services.RegisterPersistence(builder.Configuration);
+    builder.Services.RegisterInfrastructer(builder.Configuration);
 
-    builder.Services.AddDataContext(builder.Configuration);
+
+
 
 
     var app = builder.Build();
 
-
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
 
     if (app.Environment.IsDevelopment())
     {
@@ -33,7 +38,7 @@ try
         app.UseSwaggerUI();
 
         app.SetDatabaseMigrations();
-        app.UseSeedData();
+        await app.UseSeedDataAsync();
     }
 
     app.UseHttpsRedirection();
@@ -64,7 +69,6 @@ Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
     return new LoggerConfiguration()
         .MinimumLevel.Verbose()
         .Enrich.WithProperty("ApplicationContext", Program.AppName)
-        .Enrich.WithProperty("DbContext", Program.AppName)
         .WriteTo.Console()
         .ReadFrom.Configuration(configuration)
         .CreateLogger();

@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Data\Migrations\" />
+    <ProjectReference Include="..\Infrastructure\ContactService.Infrastructure\ContactService.Infrastructure.csproj" />
+    <ProjectReference Include="..\Infrastructure\ContactService.Persistence\ContactService.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
