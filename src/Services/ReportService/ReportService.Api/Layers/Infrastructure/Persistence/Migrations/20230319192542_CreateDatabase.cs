@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ReportService.Api.Layers.Infrastructure.Persistence.Migrations
+namespace ReportService.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class CreateDatabase : Migration
