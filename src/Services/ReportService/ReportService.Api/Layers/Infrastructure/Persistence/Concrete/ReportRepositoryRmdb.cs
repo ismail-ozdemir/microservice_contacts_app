@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using ReportService.Application.Abstractions.Repositories;
 using ReportService.Domain.Entities;
 using ReportService.Persistence.Contexts;
@@ -12,6 +13,11 @@ namespace ReportService.Persistence.Concrete
         public ReportRepositoryRmdb(ReportContextRmdb context)
         {
             _context = context;
+        }
+
+        public async Task<List<Report>> GetReportsAsync(CancellationToken cancellicationToken)
+        {
+            return await _context.Reports.AsNoTracking().ToListAsync(cancellicationToken);
         }
 
         public async Task<Guid> InsertReportAsync(Report report, CancellationToken cancellationToken)

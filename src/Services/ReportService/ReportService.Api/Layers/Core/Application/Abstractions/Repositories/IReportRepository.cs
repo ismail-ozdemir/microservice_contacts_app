@@ -4,6 +4,8 @@ namespace ReportService.Application.Abstractions.Repositories
 {
     public interface IReportRepository
     {
+        //TODO sayfalı  bir şekilde gelmeli
+        public Task<List<Report>> GetReportsAsync(CancellationToken cancellicationToken);
         /// <summary>
         /// Veritabanına rapor isteğini kaydeder.
         /// </summary>
@@ -12,5 +14,7 @@ namespace ReportService.Application.Abstractions.Repositories
         /// Veritabanına kaydedilen raporun Id deperini dönderir.
         /// </returns>
         public Task<Guid> InsertReportAsync(Report report, CancellationToken cancellationToken);
+
+
     }
 }

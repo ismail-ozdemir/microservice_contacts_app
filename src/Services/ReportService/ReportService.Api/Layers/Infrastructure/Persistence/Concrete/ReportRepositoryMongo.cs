@@ -16,6 +16,12 @@ namespace ReportService.Persistence.Concrete
             _context = context;
         }
 
+        public Task<List<Report>> GetReportsAsync(CancellationToken cancellicationToken)
+        {
+            //TODO tekrar bak. 
+            return Task.FromResult(_context.Reports.AsQueryable().ToList());
+        }
+
         public async Task<Guid> InsertReportAsync(Report report, CancellationToken cancellationToken)
         {
             await _context.Reports.InsertOneAsync(report);
