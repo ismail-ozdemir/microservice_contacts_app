@@ -11,6 +11,6 @@ namespace ReportService.Application.Abstractions.Repositories
         /// <returns>
         /// Veritabanına kaydedilen raporun Id deperini dönderir.
         /// </returns>
-        public Task<Guid> InsertReportAsync(Report report);
+        public Task<Guid> InsertReportAsync(Report report, CancellationToken cancellationToken);
     }
 }

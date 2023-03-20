@@ -1,27 +1,26 @@
-﻿using ReportService.Application.Abstractions.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using ReportService.Application.Abstractions.Repositories;
 using ReportService.Domain.Entities;
+using ReportService.Persistence.Contexts;
 
 namespace ReportService.Persistence.Concrete
 {
-    public class ReportRepositoryRmdb : IReportRepository
+    internal class ReportRepositoryRmdb : IReportRepository
     {
-        public Task<Guid> InsertReportAsync(Report report)
-        {
+        private readonly ReportContextRmdb _context;
 
-            throw new NotImplementedException();
+        public ReportRepositoryRmdb(ReportContextRmdb context)
+        {
+            _context = context;
+        }
+
+        public async Task<Guid> InsertReportAsync(Report report, CancellationToken cancellationToken)
+        {
+            await _context.Reports.AddAsync(report, cancellationToken);
+            await _context.SaveChangesAsync();
+            return report.Id;
+
         }
     }
-
-    public class ReportRepositoryMongo : IReportRepository
-    {
-        public Task<Guid> InsertReportAsync(Report report)
-        {
-
-            throw new NotImplementedException();
-        }
-    }
-
-
-
 
 }
