@@ -15,16 +15,17 @@ namespace ReportService.Persistence
         {
 
             var settingSection = configuration.GetSection(nameof(DatabaseSettings));
-            switch (settingSection["DatabaseType"])
+            var conf = settingSection.Get<DatabaseSettings>();
+            switch (conf.UseSettings)
             {
-                case "Postgre":
-                    services.RegisterPostgreServices(settingSection.Get<PosgreSettings>());
+                case nameof(PosgreSettings):
+                    services.RegisterPostgreServices(settingSection.GetSection(nameof(PosgreSettings)).Get<PosgreSettings>());
                     break;
-                case "Mongo":
-                    services.RegisterMangoServices(settingSection.Get<MangoSettings>());
+                case nameof(MangoSettings):
+                    services.RegisterMangoServices(settingSection.GetSection(nameof(MangoSettings)).Get<MangoSettings>());
                     break;
                 default:
-                    services.RegisterPostgreServices(settingSection.Get<PosgreSettings>());
+                    services.RegisterPostgreServices(settingSection.GetSection(nameof(PosgreSettings)).Get<PosgreSettings>());
                     break;
             }
             return services;

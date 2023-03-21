@@ -2,13 +2,13 @@
 {
     public class DatabaseSettings
     {
-        public string DatabaseType { get; set; } = string.Empty;
+        public string UseSettings { get; set; } = string.Empty;
     }
-    public class PosgreSettings : DatabaseSettings
+    public class PosgreSettings
     {
         public string ConnectionString { get; set; } = string.Empty;
     }
-    public class MangoSettings : DatabaseSettings
+    public class MangoSettings
     {
         public string ConnectionString { get; set; } = string.Empty;
         public string DatabaseName { get; set; } = string.Empty;
