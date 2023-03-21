@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.42.0" />
 
@@ -34,12 +35,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+
+    
+    <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
     
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Layers\Core\Application\Features\Queries\" />
     <Folder Include="Layers\Core\Application\Mapping\" />
+    <Folder Include="Layers\Infrastructure\Infrastructure\Services\" />
     <Folder Include="Layers\Infrastructure\Persistence\Migrations\" />
     <Folder Include="Protos\" />
   </ItemGroup>
