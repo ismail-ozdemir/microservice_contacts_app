@@ -29,8 +29,8 @@ namespace ReportService.Application.Features.Commands
             }
             public async Task<CreateReportCommandResponseDto> Handle(CreateReportCommand request, CancellationToken cancellationToken)
             {
-                var report = new Report { ReportType = request.ReportTypeId };
-                Guid reportId = await _reportRepository.InsertReportAsync(report,cancellationToken);
+                var report = new Report { ReportType = request.ReportTypeId, ReportStatusType = ReportStatusType.Preparing };
+                Guid reportId = await _reportRepository.InsertReportAsync(report, cancellationToken);
                 _logger.LogInformation("Report Created");
                 _eventBus.Publish(new CreateReportRequestEvent { Id = reportId });
                 _logger.LogInformation("Report published to queue");
