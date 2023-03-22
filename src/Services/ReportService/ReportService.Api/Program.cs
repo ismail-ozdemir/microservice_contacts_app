@@ -1,7 +1,3 @@
-using BuildingBlocks.EventBus;
-using BuildingBlocks.EventBus.Absractions;
-using Microsoft.IdentityModel.Tokens;
-using ReportService.Api.Configurations;
 using ReportService.Application;
 using ReportService.Infrastructure;
 using ReportService.Persistence;
@@ -17,7 +13,7 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-
+    builder.Host.UseSerilog();
 
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
@@ -25,8 +21,8 @@ try
 
 
     builder.Services.RegisterApplicationServices();
-    builder.Services.RegisterPersistenceServices(builder.Configuration);
-    builder.Services.RegisterInfrastructure(builder.Configuration);
+    builder.Services.RegisterPersistenceServices(configuration);
+    builder.Services.RegisterInfrastructureServices(configuration);
 
     var app = builder.Build();
 
@@ -54,6 +50,7 @@ catch (Exception ex)
 {
 
     Log.Fatal(ex, "Program terminated unexpectedly {ApplicationContext}!", Program.AppName);
+    Console.ReadLine();
 
 }
 finally

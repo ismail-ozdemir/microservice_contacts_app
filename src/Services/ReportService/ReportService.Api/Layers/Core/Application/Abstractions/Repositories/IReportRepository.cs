@@ -15,6 +15,12 @@ namespace ReportService.Application.Abstractions.Repositories
         /// </returns>
         public Task<Guid> InsertReportAsync(Report report, CancellationToken cancellationToken);
 
+        public Task<Report> UpdateReportAsync(Report report, CancellationToken cancellationToken);
+
+
+
+        public Task<Report?> GetReportByIdAsync(Guid Id, CancellationToken cancellationToken);
+
 
     }
 }

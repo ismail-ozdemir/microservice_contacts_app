@@ -31,10 +31,10 @@ namespace ContactService.Persistence.Concrete.Repositories
             return await PaginationHelper.GetPagedAsync(query, filter.PageNo, filter.PageSize);
         }
 
-        public async Task<ContactReportByLocationVm> GetContactReportByLocation(string LocationName)
+        public async Task<List<ContactReportByLocationVm>> GetContactReportByLocation()
         {
 
-            Expression<Func<ContactInformation, bool>> locationExpr = (ci) => ci.InformationType == InformationType.Location && ci.Content == LocationName;
+            Expression<Func<ContactInformation, bool>> locationExpr = (ci) => ci.InformationType == InformationType.Location;
 
             var locationPersonCount = await _context.ContactInformations.AsNoTracking()
                                         .Where(locationExpr)
@@ -49,7 +49,7 @@ namespace ContactService.Persistence.Concrete.Repositories
                                                         phone => phone.PersonId,
                                                         (location, phone) => new { location, phone }
                                                         ).Where(x => x.location.Content == group.Key).Count()
-                                        }).FirstAsync();
+                                        }).ToListAsync();
 
             return locationPersonCount;
         }

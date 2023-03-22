@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using ReportService.Application.Abstractions.Repositories;
 using ReportService.Domain.Entities;
 using ReportService.Persistence.Contexts;
@@ -16,6 +15,11 @@ namespace ReportService.Persistence.Concrete
             _context = context;
         }
 
+        public Task<Report?> GetReportByIdAsync(Guid Id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Report>> GetReportsAsync(CancellationToken cancellicationToken)
         {
             //TODO tekrar bak. 
@@ -26,6 +30,11 @@ namespace ReportService.Persistence.Concrete
         {
             await _context.Reports.InsertOneAsync(report);
             return report.Id;
+        }
+
+        public Task<Report> UpdateReportAsync(Report report, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 

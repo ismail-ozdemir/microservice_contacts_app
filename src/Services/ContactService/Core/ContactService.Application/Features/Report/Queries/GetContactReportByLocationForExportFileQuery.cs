@@ -6,16 +6,15 @@ using MediatR;
 
 namespace ContactService.Application.Features.Report.Queries
 {
-    public class GetContactReportByLocationForExportFileQuery : IRequest<ContactReportByLocationDto>
+    public class GetContactReportByLocationForExportFileQuery : IRequest<List<ContactReportByLocationDto>>
     {
-        public string LocationName { get; set; }
 
-        public GetContactReportByLocationForExportFileQuery(string locationName)
+        public GetContactReportByLocationForExportFileQuery()
         {
-            LocationName = locationName;
+            
         }
 
-        public class GetContactReportByLocationForExportFileQueryHandler : IRequestHandler<GetContactReportByLocationForExportFileQuery, ContactReportByLocationDto>
+        public class GetContactReportByLocationForExportFileQueryHandler : IRequestHandler<GetContactReportByLocationForExportFileQuery, List<ContactReportByLocationDto>>
         {
             private readonly IMapper _mapper;
             private readonly IContactInfoRepository _contInfoRepo;
@@ -26,12 +25,12 @@ namespace ContactService.Application.Features.Report.Queries
                 _contInfoRepo = contactInfoRepository ?? throw new ArgumentNullException(nameof(contactInfoRepository));
             }
 
-            public async Task<ContactReportByLocationDto> Handle(GetContactReportByLocationForExportFileQuery request, CancellationToken cancellationToken)
+            public async Task<List<ContactReportByLocationDto>> Handle(GetContactReportByLocationForExportFileQuery request, CancellationToken cancellationToken)
             {
 
-                var data = await _contInfoRepo.GetContactReportByLocation(request.LocationName);
+                var data = await _contInfoRepo.GetContactReportByLocation();
 
-                var result = _mapper.Map<ContactReportByLocationDto>(data);
+                var result = _mapper.Map<List<ContactReportByLocationDto>>(data);
 
                 return result;
             }
