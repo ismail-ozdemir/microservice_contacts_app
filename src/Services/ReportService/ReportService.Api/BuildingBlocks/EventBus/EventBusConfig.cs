@@ -8,5 +8,6 @@
         public string EventBusConnectionString { get; set; } = string.Empty;
         public string SubscriberClientAppName { get; set; } = string.Empty;
         public object? Connection { get; set; }
+        public ushort ConsumerMessageLimit { get; set; } = 0;
     }
 }

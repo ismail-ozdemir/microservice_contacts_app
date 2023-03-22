@@ -3,7 +3,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
 using System.Net.Sockets;
 
-namespace BuildingBlocks.EventBus
+namespace BuildingBlocks.EventBus.RabbitMQ
 {
     public class RabbitMQPersistentConnection : IDisposable
     {

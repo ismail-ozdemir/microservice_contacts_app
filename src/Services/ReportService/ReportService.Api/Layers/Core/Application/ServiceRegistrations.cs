@@ -9,11 +9,10 @@ namespace ReportService.Application
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-
             //services.AddValidatorsFromAssemblyContaining<CreatePersonValidator>(includeInternalTypes: true);
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         }
+  
     }
 }

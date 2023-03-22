@@ -3,6 +3,7 @@ using BuildingBlocks.EventBus.Absractions;
 using Microsoft.IdentityModel.Tokens;
 using ReportService.Api.Configurations;
 using ReportService.Application;
+using ReportService.Infrastructure;
 using ReportService.Persistence;
 using Serilog;
 
@@ -25,7 +26,7 @@ try
 
     builder.Services.RegisterApplicationServices();
     builder.Services.RegisterPersistenceServices(builder.Configuration);
-    builder.Services.RegisterEventBus(builder.Configuration);
+    builder.Services.RegisterInfrastructure(builder.Configuration);
 
     var app = builder.Build();
 
@@ -36,6 +37,8 @@ try
         app.UseSwaggerUI();
         await app.SetDatabaseMigrations();
     }
+
+    app.UseEventBus();
 
     app.UseHttpsRedirection();
 
@@ -92,25 +95,3 @@ public partial class Program
 }
 
 
-
-static class ServiceRegisterExtentions
-{
-
-    public static void RegisterEventBus(this IServiceCollection services, IConfiguration configuration)
-    {
-        var conf = configuration.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
-        if (conf == null)
-            throw new ArgumentNullException($"{nameof(RabbitMQSettings)} not defined appsettings");
-        else
-        {
-            services.AddSingleton<IEventBus>(provider => new EventBusRabbitMQ(provider, new()
-            {
-                EventBusConnectionString = conf.ConnectionString,
-                SubscriberClientAppName = Program.AppName
-            }));
-        }
-
-    }
-
-
-}

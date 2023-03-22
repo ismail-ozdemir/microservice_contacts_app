@@ -1,6 +1,6 @@
 ﻿namespace BuildingBlocks.EventBus.Absractions
 {
-    public interface IQeueEvent
+    public interface IQueueEvent
     {
     }
 }
