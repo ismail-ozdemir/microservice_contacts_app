@@ -3,6 +3,7 @@ using BuildingBlocks.EventBus.Absractions;
 using Microsoft.IdentityModel.Tokens;
 using ReportService.Api.Configurations;
 using ReportService.Application;
+using ReportService.Infrastructure;
 using ReportService.Persistence;
 using Serilog;
 
@@ -25,6 +26,8 @@ try
 
     builder.Services.RegisterApplicationServices();
     builder.Services.RegisterPersistenceServices(builder.Configuration);
+    builder.Services.RegisterInfrastructureServices(builder.Configuration);
+    //comman
     builder.Services.RegisterEventBus(builder.Configuration);
 
     var app = builder.Build();
