@@ -26,10 +26,9 @@ namespace ReportService.Infrastructure.Services
 
             var filecontent = ConvertToExcel(dt, columns, fileName, true);
 
-            string filePath = string.Empty;
-            SaveToExcel(filecontent, folderPath, fileName, out filePath);
+            SaveToExcel(filecontent, folderPath, fileName, out fileName);
 
-            return filePath;
+            return Path.Combine(folderPath, fileName);
         }
 
         private static DataTable ListToDataTable<T>(List<T> data)
@@ -54,7 +53,7 @@ namespace ReportService.Infrastructure.Services
         }
         private static byte[] ConvertToExcel(DataTable dataTable, List<string> columns, string heading = "", bool showSrNo = false)
         {
-            byte[] result = new byte[0];
+            byte[]? result = null;
 
             using (ExcelPackage package = new ExcelPackage())
             {
