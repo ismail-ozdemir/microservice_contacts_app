@@ -7,15 +7,18 @@ using ReportService.Infrastructure.Configurations;
 
 namespace ReportService.Infrastructure.Services
 {
+    // TODO : persistent retry
     public class ContactServiceGrpc : IContactService
     {
 
         private readonly ContactProtoService.ContactProtoServiceClient _client;
+        private readonly ServiceEndpointSettings endPoints;
         public ContactServiceGrpc(IOptions<ServiceEndpointSettings> options)
         {
-            var channel = GrpcChannel.ForAddress(options.Value.ContactService_Grpc);
+            endPoints = options.Value;
+            var channel = GrpcChannel.ForAddress(endPoints.ContactService_Grpc);
             _client = new ContactProtoService.ContactProtoServiceClient(channel);
-            
+
         }
 
         public async Task<List<PhoneNumberAndPersonCountByLocationDto>> GetPhoneNumberAndPersonCountByLocation(CancellationToken cancellationToken)

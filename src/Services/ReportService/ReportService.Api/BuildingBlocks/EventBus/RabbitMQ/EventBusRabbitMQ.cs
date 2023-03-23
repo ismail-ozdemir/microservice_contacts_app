@@ -160,7 +160,7 @@ namespace BuildingBlocks.EventBus.RabbitMQ
             catch (Exception ex)
             {
                 _logger.LogCritical(ex, "eventhandler not triggered");
-                consumerChannel.BasicNack(e.DeliveryTag, multiple: false, requeue: true); //TODO :  başka bir kuyruğa eklemesi gerekli.
+                consumerChannel.BasicNack(e.DeliveryTag, multiple: false, requeue: false); //TODO :  başka bir kuyruğa eklemesi gerekli.
             }
         }
     }

@@ -16,6 +16,7 @@ namespace ReportService.Infrastructure
         {
             services.Configure<ServiceEndpointSettings>(configuration.GetSection(nameof(ServiceEndpointSettings)));
             services.AddTransient<IContactService, ContactServiceGrpc>();
+            services.AddSingleton<IFileService,FileService>();
 
             var conf = configuration.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
             if (conf == null)
