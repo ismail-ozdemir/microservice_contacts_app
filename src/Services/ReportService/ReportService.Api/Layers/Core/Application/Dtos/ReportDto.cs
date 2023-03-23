@@ -7,5 +7,6 @@
         public string Status { get; set; } = string.Empty;
         public DateTime RequestDate { get; set; }
         public DateTime? CreatedDate { get; set; }
+        public string FilePath { get; set; } = string.Empty;
     }
 }

@@ -19,7 +19,7 @@ namespace BuildingBlocks.EventBus.RabbitMQ
         private readonly IConnectionFactory? connectionFactory;
         private readonly IModel publishChannel;
         private readonly IModel consumerChannel;
-        private readonly ILogger<EventBusRabbitMQ> _logger;
+        private readonly new ILogger<EventBusRabbitMQ> _logger;
 
         public EventBusRabbitMQ(IServiceProvider serviceProvider, EventBusConfig config) : base(serviceProvider, config)
         {

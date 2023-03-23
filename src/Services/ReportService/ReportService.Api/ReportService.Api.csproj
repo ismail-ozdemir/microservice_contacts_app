@@ -40,7 +40,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Layers\Core\Application\Features\Queries\" />
 		<Folder Include="Layers\Core\Application\Mapping\" />
 		<Folder Include="Layers\Infrastructure\Persistence\Migrations\" />
 		<Folder Include="Protos\" />
