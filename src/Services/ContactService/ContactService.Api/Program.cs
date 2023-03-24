@@ -2,6 +2,8 @@ using Serilog;
 using ContactService.Persistence.Extentions;
 using ContactService.Application;
 using ContactService.Api.Middlewares;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 IConfiguration configuration = GetConfiguration();
 Log.Logger = CreateSerilogLogger(configuration);
@@ -18,17 +20,19 @@ try
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-
+    IHealthChecksBuilder hcBuilder = builder.Services.AddHealthChecks();
 
     builder.Services.RegisterApplication();
-    builder.Services.RegisterPersistence(builder.Configuration);
+    builder.Services.RegisterPersistence(builder.Configuration, hcBuilder);
     builder.Services.RegisterInfrastructer(builder.Configuration);
 
 
 
 
 
+
     var app = builder.Build();
+    app.UseHealthChecks("/health", new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse });
 
     app.UseMiddleware<ExceptionHandlerMiddleware>();
 

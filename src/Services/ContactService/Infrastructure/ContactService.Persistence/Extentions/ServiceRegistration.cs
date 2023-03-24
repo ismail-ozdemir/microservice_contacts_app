@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 
 namespace ContactService.Persistence.Extentions
 {
     public static class ServiceRegistration
     {
-        public static void RegisterPersistence(this IServiceCollection services, IConfiguration configuration)
+        public static void RegisterPersistence(this IServiceCollection services, IConfiguration configuration, IHealthChecksBuilder? hcBuilder = null)
         {
             DatabaseSettings? dbSetting = configuration.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
             if (dbSetting == null)
@@ -33,6 +34,17 @@ namespace ContactService.Persistence.Extentions
 
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IContactInfoRepository, ContactInfoRepository>();
+
+            if (hcBuilder != null)
+            {
+                hcBuilder.AddNpgSql(
+                    npgsqlConnectionString: dbSetting.ConnectionString,
+                    healthQuery: "SELECT 1",
+                    name: "Postgre Check",
+                    failureStatus: HealthStatus.Unhealthy | HealthStatus.Degraded,
+                    tags: new string[] { "db", "sql", "postgre" }
+                    );
+            }
         }
 
 
