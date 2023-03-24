@@ -16,16 +16,19 @@ namespace ContactService.Grpc.Services
         public override async Task<ContactReportByLocationResponsePm> GetContactReportByLocation(ContactReportByLocationRequestPm request, ServerCallContext context)
         {
 
-            var query = new GetContactReportByLocationForExportFileQuery(request.LocationName);
+            var query = new GetContactReportByLocationForExportFileQuery();
             var result = await _mediator.Send(query);
 
             var response = new ContactReportByLocationResponsePm();
-            response.Data.Add(new ContactReportPm
+
+            var rpm= result.Select(x=> new ContactReportPm
             {
-                LocationName = result.LocationName,
-                PersonCountInLocation = result.PersonCountInLocation,
-                PhoneNumberCountInLocation = result.PhoneNumberCountInLocation
+                LocationName = x.LocationName,
+                PersonCountInLocation = x.PersonCountInLocation,
+                PhoneNumberCountInLocation = x.PhoneNumberCountInLocation
             });
+            response.Data.AddRange(rpm);
+
             return await Task.FromResult(response);
         }
     }

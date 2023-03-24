@@ -12,7 +12,7 @@ service ContactProtoService {
 
 // request parameters
 message ContactReportByLocationRequestPm {
-  string locationName = 1;
+     string locationName = 1;
 }
 
 
