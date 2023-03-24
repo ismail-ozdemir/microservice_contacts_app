@@ -1,3 +1,5 @@
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using ReportService.Application;
 using ReportService.Infrastructure;
 using ReportService.Persistence;
@@ -18,14 +20,15 @@ try
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    IHealthChecksBuilder hcBuilder = builder.Services.AddHealthChecks();
 
 
     builder.Services.RegisterApplicationServices();
-    builder.Services.RegisterPersistenceServices(configuration);
-    builder.Services.RegisterInfrastructureServices(configuration);
+    builder.Services.RegisterPersistenceServices(configuration, hcBuilder);
+    builder.Services.RegisterInfrastructureServices(configuration, hcBuilder);
 
     var app = builder.Build();
-
+    app.UseHealthChecks("/health", new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse });
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {

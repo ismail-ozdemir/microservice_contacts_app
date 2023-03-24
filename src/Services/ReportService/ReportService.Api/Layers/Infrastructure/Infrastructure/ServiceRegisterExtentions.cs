@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.EventBus.Absractions;
 using BuildingBlocks.EventBus.RabbitMQ;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using ReportService.Api.Configurations;
 using ReportService.Application.Abstractions.Services;
 using ReportService.Application.Events;
@@ -12,11 +13,11 @@ namespace ReportService.Infrastructure
     public static class ServiceRegisterExtentions
     {
 
-        public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services, IConfiguration configuration, IHealthChecksBuilder? hcBuilder = null)
         {
             services.Configure<ServiceEndpointSettings>(configuration.GetSection(nameof(ServiceEndpointSettings)));
             services.AddTransient<IContactService, ContactServiceGrpc>();
-            services.AddSingleton<IFileService,FileService>();
+            services.AddSingleton<IFileService, FileService>();
 
             var conf = configuration.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
             if (conf == null)
@@ -29,6 +30,16 @@ namespace ReportService.Infrastructure
                     SubscriberClientAppName = "ReportService"
                 }));
                 services.AddTransient<CreateReportRequestEventHandler>();
+
+                if (hcBuilder != null)
+                {
+                    hcBuilder.AddRabbitMQ(
+                        rabbitConnectionString: conf.ConnectionString,
+                        name: "RabbitMQ Check",
+                        failureStatus: HealthStatus.Unhealthy | HealthStatus.Degraded,
+                        tags: new string[] { "eventbus", "qeueu", "rabbitmq" }
+                        );
+                }
             }
 
             return services;

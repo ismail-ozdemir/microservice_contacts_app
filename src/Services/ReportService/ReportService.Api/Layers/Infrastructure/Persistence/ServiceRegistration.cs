@@ -6,12 +6,14 @@ using ReportService.Application.Abstractions.Repositories;
 using ReportService.Persistence.Concrete;
 using ReportService.Persistence.Configuration;
 using ReportService.Persistence.Contexts;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using MongoDB.Driver;
 
 namespace ReportService.Persistence
 {
     public static class ServiceRegistration
     {
-        public static IServiceCollection RegisterPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection RegisterPersistenceServices(this IServiceCollection services, IConfiguration configuration, IHealthChecksBuilder? hcBuilder = null)
         {
 
             var settingSection = configuration.GetSection(nameof(DatabaseSettings));
@@ -19,13 +21,13 @@ namespace ReportService.Persistence
             switch (conf.UseSettings)
             {
                 case nameof(PosgreSettings):
-                    services.RegisterPostgreServices(settingSection.GetSection(nameof(PosgreSettings)).Get<PosgreSettings>());
+                    services.RegisterPostgreServices(settingSection.GetSection(nameof(PosgreSettings)).Get<PosgreSettings>(), hcBuilder);
                     break;
                 case nameof(MangoSettings):
-                    services.RegisterMangoServices(settingSection.GetSection(nameof(MangoSettings)).Get<MangoSettings>());
+                    services.RegisterMangoServices(settingSection.GetSection(nameof(MangoSettings)).Get<MangoSettings>(), hcBuilder);
                     break;
                 default:
-                    services.RegisterPostgreServices(settingSection.GetSection(nameof(PosgreSettings)).Get<PosgreSettings>());
+                    services.RegisterPostgreServices(settingSection.GetSection(nameof(PosgreSettings)).Get<PosgreSettings>(), hcBuilder);
                     break;
             }
             return services;
@@ -72,7 +74,7 @@ namespace ReportService.Persistence
 
 
 
-        private static void RegisterPostgreServices(this IServiceCollection services, PosgreSettings settings)
+        private static void RegisterPostgreServices(this IServiceCollection services, PosgreSettings settings, IHealthChecksBuilder? hcBuilder = null)
         {
             services.AddDbContext<ReportContextRmdb>(options =>
             {
@@ -86,11 +88,33 @@ namespace ReportService.Persistence
                     );
             });
             services.AddScoped<IReportRepository, ReportRepositoryRmdb>();
+
+            if (hcBuilder != null)
+            {
+                hcBuilder.AddNpgSql(
+                    npgsqlConnectionString: settings.ConnectionString,
+                    healthQuery: "SELECT 1",
+                    name: "Postgre Check",
+                    failureStatus: HealthStatus.Unhealthy | HealthStatus.Degraded,
+                    tags: new string[] { "db", "sql", "postgre" }
+                    );
+            }
+
         }
-        private static void RegisterMangoServices(this IServiceCollection services, MangoSettings settings)
+        private static void RegisterMangoServices(this IServiceCollection services, MangoSettings settings, IHealthChecksBuilder? hcBuilder = null)
         {
             services.AddScoped(p => new ReportContextMongo(settings));
             services.AddScoped<IReportRepository, ReportRepositoryMongo>();
+            if (hcBuilder != null)
+            {
+                hcBuilder.AddMongoDb(
+                    mongodbConnectionString: settings.ConnectionString,
+                    mongoDatabaseName: settings.DatabaseName,
+                    name: "MongoDb Check",
+                    failureStatus: HealthStatus.Unhealthy | HealthStatus.Degraded,
+                    tags: new string[] { "db", "no-sql", "mongo" }
+                    );
+            }
         }
 
 
