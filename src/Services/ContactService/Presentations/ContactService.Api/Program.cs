@@ -88,7 +88,7 @@ IConfiguration GetConfiguration()
     return builder.Build();
 }
 
-public partial class Program
+public static partial class Program
 {
     public const string AppName = "ContactService.Api";
 }

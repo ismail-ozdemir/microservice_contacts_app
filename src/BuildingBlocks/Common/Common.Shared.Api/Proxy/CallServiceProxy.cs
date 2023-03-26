@@ -50,7 +50,7 @@ namespace Common.Shared.Api.Proxy
         public static async Task<ApiResponse> CallServiceAsync(Func<Task> serviceMethod)
         {
             if (serviceMethod == null)
-                throw new ArgumentNullException("serviceMethod");
+                throw new ArgumentNullException(nameof(serviceMethod));
 
             var serviceExecutionResult = await ExecuteServiceAsync(serviceMethod);
             return new ApiResponse

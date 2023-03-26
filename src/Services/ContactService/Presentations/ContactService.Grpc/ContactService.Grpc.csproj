@@ -4,11 +4,17 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <CodeAnalysisRuleSet>..\..\..\..\..\.sonarlint\contact-service-apicsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
 
   <ItemGroup>
     <Protobuf Include="Protos\*.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\..\..\.sonarlint\contact-service-api\CSharp\SonarLint.xml" Link="SonarLint.xml" />
   </ItemGroup>
 
   <ItemGroup>

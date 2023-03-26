@@ -6,8 +6,8 @@ namespace Common.Shared.Api.Wrappers
     public class ApiResponse
     {
         public bool IsCompletedSuccessfully { get; set; }
-        public long ServiceInvokeDurationInTicks { get; set; }
-        public long ServiceInvokeDurationInMilliseconds { get; set; }
+        public double ServiceInvokeDurationInTicks { get; set; }
+        public double ServiceInvokeDurationInMilliseconds { get; set; }
     }
     [ExcludeFromCodeCoverage]
     public class ApiResponse<TData> : ApiResponse

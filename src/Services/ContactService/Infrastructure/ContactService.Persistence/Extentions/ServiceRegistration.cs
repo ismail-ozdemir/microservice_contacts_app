@@ -41,7 +41,7 @@ namespace ContactService.Persistence.Extentions
                     npgsqlConnectionString: dbSetting.ConnectionString,
                     healthQuery: "SELECT 1",
                     name: "Postgre Check",
-                    failureStatus: HealthStatus.Unhealthy | HealthStatus.Degraded,
+                    failureStatus: HealthStatus.Unhealthy,
                     tags: new string[] { "db", "sql", "postgre" }
                     );
             }

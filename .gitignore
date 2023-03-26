@@ -1,6 +1,8 @@
 .vs
 sonar-scanner-4.8.0.2856
 .sonarqube
+.sonarlint
 sonarqubecoverage
 sonar.bat
+sonarc.bat
 src/**/TestResults

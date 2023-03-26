@@ -18,7 +18,7 @@ namespace ContactService.Persistence.Context
             await policy.ExecuteAsync(() => ProccessSeeding(context, logger));
         }
 
-        private async Task ProccessSeeding(ContactsContext context, ILogger<ContactContextSeed> logger)
+        private static async Task ProccessSeeding(ContactsContext context, ILogger<ContactContextSeed> logger)
         {
 
             if (!context.Persons.Any())
@@ -46,7 +46,7 @@ namespace ContactService.Persistence.Context
 
         }
 
-        private AsyncRetryPolicy CreatePolicy(ILogger<ContactContextSeed> logger, string prefix, int retries = 5)
+        private static AsyncRetryPolicy CreatePolicy(ILogger<ContactContextSeed> logger, string prefix, int retries = 5)
         {
             return Policy.Handle<SqlException>().
                 WaitAndRetryAsync(
@@ -60,7 +60,7 @@ namespace ContactService.Persistence.Context
         }
 
 
-        private Tuple<List<Person>, List<ContactInformation>> GetFakeData()
+        private static Tuple<List<Person>, List<ContactInformation>> GetFakeData()
         {
 
             List<ContactInformation> info = new();

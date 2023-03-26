@@ -1,16 +1,18 @@
 ﻿
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 namespace Common.Shared.Exceptions
 {
     [ExcludeFromCodeCoverage]
+    [Serializable]
     public class ValidationException : CommonBaseException
     {
         public List<ResponseItem> Errors { get; }
 
         public ValidationException(string message) : base(message)
         {
-
+            Errors = new();
         }
         public ValidationException(List<ResponseItem> errors)
         {
@@ -19,6 +21,10 @@ namespace Common.Shared.Exceptions
         public ValidationException(List<ResponseItem> errors, string message) : this(message)
         {
             Errors = errors;
+        }
+        protected ValidationException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+            Errors = (info.GetValue(nameof(ValidationException.Errors), typeof(List<ResponseItem>)) as List<ResponseItem>) ?? new List<ResponseItem>();
         }
 
 
