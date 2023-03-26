@@ -1,9 +1,10 @@
 ﻿using ContactService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-
+using System.Diagnostics.CodeAnalysis;
 
 namespace ContactService.Persistence.Context
 {
+    [ExcludeFromCodeCoverage]
     internal class ContactsContext : DbContext
     {
 
@@ -15,9 +16,9 @@ namespace ContactService.Persistence.Context
         public DbSet<Person> Persons { get; set; }
         public DbSet<ContactInformation> ContactInformations { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
         }
 
     }

@@ -1,5 +1,8 @@
-﻿namespace Common.Shared.Api.Dto.ExceptionResponses
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Common.Shared.Api.Dto.ExceptionResponses
 {
+    [ExcludeFromCodeCoverage]
     public abstract class NotFound : ExceptionResponseDtoBase
     {
         public string Message { get; }

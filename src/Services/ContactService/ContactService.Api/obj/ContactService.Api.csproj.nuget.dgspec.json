@@ -1,0 +1,645 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\ContactService.Api\\ContactService.Api.csproj": {}
+  },
+  "projects": {
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared.Api\\Common.Shared.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared.Api\\Common.Shared.Api.csproj",
+        "projectName": "Common.Shared.Api",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared.Api\\Common.Shared.Api.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj",
+        "projectName": "Common.Shared",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\ContactService.Api\\ContactService.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\ContactService.Api\\ContactService.Api.csproj",
+        "projectName": "ContactService.Api",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\ContactService.Api\\ContactService.Api.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\ContactService.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared.Api\\Common.Shared.Api.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared.Api\\Common.Shared.Api.csproj"
+              },
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Infrastructure\\ContactService.Infrastructure.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Infrastructure\\ContactService.Infrastructure.csproj"
+              },
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Persistence\\ContactService.Persistence.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Persistence\\ContactService.Persistence.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AspNetCore.HealthChecks.UI.Client": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Bogus": {
+              "target": "Package",
+              "version": "[34.0.2, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
+            "Serilog.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Sinks.Debug": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\ContactService.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\ContactService.Application.csproj",
+        "projectName": "ContactService.Application",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\ContactService.Application.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj"
+              },
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Domain\\ContactService.Domain.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Domain\\ContactService.Domain.csproj"
+              },
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Shared\\ContactService.Shared.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Shared\\ContactService.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.5.1, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.5.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Domain\\ContactService.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Domain\\ContactService.Domain.csproj",
+        "projectName": "ContactService.Domain",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Domain\\ContactService.Domain.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Shared\\ContactService.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Shared\\ContactService.Shared.csproj",
+        "projectName": "ContactService.Shared",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Shared\\ContactService.Shared.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\BuildingBlocks\\Common\\Common.Shared\\Common.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Infrastructure\\ContactService.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Infrastructure\\ContactService.Infrastructure.csproj",
+        "projectName": "ContactService.Infrastructure",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Infrastructure\\ContactService.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\ContactService.Application.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\ContactService.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Persistence\\ContactService.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Persistence\\ContactService.Persistence.csproj",
+        "projectName": "ContactService.Persistence",
+        "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Persistence\\ContactService.Persistence.csproj",
+        "packagesPath": "C:\\Users\\ozdem\\.nuget\\packages\\",
+        "outputPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Infrastructure\\ContactService.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ozdem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\ContactService.Application.csproj": {
+                "projectPath": "D:\\Projelerim\\MicroService\\MicroContactsApp\\src\\Services\\ContactService\\Core\\ContactService.Application\\ContactService.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AspNetCore.HealthChecks.Npgsql": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "Bogus": {
+              "target": "Package",
+              "version": "[34.0.2, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

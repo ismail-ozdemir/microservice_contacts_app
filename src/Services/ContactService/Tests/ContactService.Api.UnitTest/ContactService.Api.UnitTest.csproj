@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ContactService.Api\ContactService.Api.csproj" />
     <ProjectReference Include="..\..\Core\ContactService.Application\ContactService.Application.csproj" />
+    <ProjectReference Include="..\..\Presentations\ContactService.Api\ContactService.Api.csproj" />
   </ItemGroup>
 
 </Project>

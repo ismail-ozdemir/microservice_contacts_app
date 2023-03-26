@@ -1,11 +1,9 @@
 ﻿using Common.Shared.Exceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Common.Shared.Api.Dto.ExceptionResponses
 {
-    public abstract class ExceptionResponseDtoBase
-    {
-        public string TypeName => this.GetType().Name;
-    }
+    [ExcludeFromCodeCoverage]
     public class ValidationExceptionResponseDto : ExceptionResponseDtoBase
     {
         public string Message { get; }

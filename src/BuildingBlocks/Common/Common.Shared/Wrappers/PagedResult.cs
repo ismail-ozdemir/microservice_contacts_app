@@ -1,6 +1,9 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 namespace Common.Shared.Wrappers
 {
+    [ExcludeFromCodeCoverage]
     public class PagedResult<T> where T : class
     {
         public int PageNo { get; set; }

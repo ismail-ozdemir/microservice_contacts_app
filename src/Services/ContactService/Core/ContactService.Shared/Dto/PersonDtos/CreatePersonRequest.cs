@@ -1,7 +1,10 @@
 ﻿
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace ContactService.Shared.Dto.PersonDtos
 {
+    [ExcludeFromCodeCoverage]
     public class CreatePersonRequest
     {
         public Guid PersonId { get; set; }

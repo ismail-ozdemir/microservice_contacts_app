@@ -1,5 +1,8 @@
-﻿namespace ContactService.Shared.Dto.ContactInfoDtos
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace ContactService.Shared.Dto.ContactInfoDtos
 {
+    [ExcludeFromCodeCoverage]
     public class ContactInfoResponseDto
     {
         public Guid InfoId { get; set; }

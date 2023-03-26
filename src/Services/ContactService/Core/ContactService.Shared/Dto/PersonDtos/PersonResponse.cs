@@ -1,8 +1,10 @@
 ﻿using Common.Shared.Wrappers;
 using ContactService.Shared.Dto.ContactInfoDtos;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ContactService.Shared.Dto.PersonDtos
 {
+    [ExcludeFromCodeCoverage]
     public class PersonResponse
     {
         public Guid Id { get; set; }

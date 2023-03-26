@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Common.Shared.Exceptions
 {
     [ExcludeFromCodeCoverage]
-    public class ValidationException : CommonExceptionBase
+    public class ValidationException : CommonBaseException
     {
         public List<ResponseItem> Errors { get; }
 

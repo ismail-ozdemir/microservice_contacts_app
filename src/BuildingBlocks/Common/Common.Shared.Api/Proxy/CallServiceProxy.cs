@@ -122,7 +122,7 @@ namespace Common.Shared.Api.Proxy
             {
                 stopwatch.Stop();
 
-                throw new CommonExceptionBase("An unhandled exception thrown during request handling. See inner exception for details.", ex)
+                throw new CommonBaseException("An unhandled exception thrown during request handling. See inner exception for details.", ex)
                 {
                     ServiceInvokeDurationInMilliseconds = stopwatch.ElapsedMilliseconds,
                     ServiceInvokeDurationInTicks = stopwatch.ElapsedTicks
