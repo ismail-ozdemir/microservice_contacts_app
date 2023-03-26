@@ -1,6 +1,9 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 namespace Common.Shared.Exceptions
 {
+    [ExcludeFromCodeCoverage]
     public class ValidationException : CommonExceptionBase
     {
         public List<ResponseItem> Errors { get; }

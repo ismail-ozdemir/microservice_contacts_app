@@ -1,5 +1,8 @@
-﻿namespace ContactService.Application.Dto.Report
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace ContactService.Application.Dto.Report
 {
+    [ExcludeFromCodeCoverage]
     public class ContactReportByLocationDto
     {
         public string LocationName { get; set; } = string.Empty;
