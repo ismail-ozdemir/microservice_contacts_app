@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using ValidationException = Common.Shared.Exceptions.ValidationException;
 
 
 namespace ContactService.Application.Behaviours
@@ -24,7 +25,7 @@ namespace ContactService.Application.Behaviours
                 var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
                 if (failures.Count != 0)
-                    throw new ValidationException(failures);
+                    throw new ValidationException(failures.Select(e => new ValidationException.ResponseItem(e.PropertyName, e.ErrorMessage, e.AttemptedValue)).ToList());
             }
             return await next();
         }

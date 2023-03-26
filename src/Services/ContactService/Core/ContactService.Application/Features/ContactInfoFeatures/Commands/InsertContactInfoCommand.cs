@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.ContactInfo;
-using ContactService.Application.Exceptions;
+using Common.Shared.Exceptions;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Domain.Entities;
+using ContactService.Shared.Dto.ContactInfoDtos;
 using MediatR;
 
 namespace ContactService.Application.Features.ContactInfoFeatures

@@ -1,8 +1,10 @@
-﻿using ContactService.Application.Dto.PersonDto;
+﻿using Common.Shared.Api.Proxy;
+using Common.Shared.Api.Wrappers;
+using Common.Shared.Wrappers;
 using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Features.PersonFeatures.Queries;
-using ContactService.Application.Filters.PersonFilters;
-using ContactService.Application.Helpers.Pagination;
+using ContactService.Shared.Dto.PersonDtos;
+using ContactService.Shared.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -21,40 +23,39 @@ namespace ContactService.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(PagedResult<PersonDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ApiResponse<PagedResult<PersonResponse>>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetPersons([FromQuery] PersonFilter filter)
         {
             var query = new GetPersonListQuery(filter);
-            var result = await _mediator.Send(query, CancellationToken.None);
+            var result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(query, CancellationToken.None));
             return Ok(result);
         }
 
         [HttpGet("GetContactInfo")]
-        [ProducesResponseType(typeof(PersonDto.WithContactInfo), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ApiResponse<PersonResponse.WithContactInfo>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetPersonContactInfo([FromQuery] PersonFilter.ById filter)
         {
             var query = new GetPersonContactInfoList(filter);
-            var result = await _mediator.Send(query, CancellationToken.None);
+            var result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(query, CancellationToken.None));
             return Ok(result);
         }
 
 
 
-        // TODO :  badrequest dönüşleri
         [HttpPost]
-        [ProducesResponseType(typeof(CreatePersonResponseDto), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> AddAsync(CreatePersonCommand command)
+        [ProducesResponseType(typeof(ApiResponse<CreatePersonResponseDto>), (int)HttpStatusCode.Created)]
+        public async Task<IActionResult> AddAsync(CreatePersonRequest request)
         {
-            var entity = await _mediator.Send(command);
+            var entity = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(new CreatePersonCommand(request)));
             return new ObjectResult(entity) { StatusCode = StatusCodes.Status201Created };
         }
 
 
         [HttpDelete]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> RemoveAsync(RemovePersonCommand command)
+        [ProducesResponseType(typeof(ApiResponse<string>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> RemoveAsync(Guid id)
         {
-            string result = await _mediator.Send(command);
+            var result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(new RemovePersonCommand(id)));
             return Ok(result);
         }
     }

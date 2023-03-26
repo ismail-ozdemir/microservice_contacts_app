@@ -1,10 +1,11 @@
-﻿using ContactService.Application.Filters.PersonFilters;
-using ContactService.Application.Helpers.Pagination;
+﻿using Common.Shared.Helpers;
+using Common.Shared.Wrappers;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.ViewModels;
 using ContactService.Domain;
 using ContactService.Domain.Entities;
 using ContactService.Persistence.Context;
+using ContactService.Shared.Filters;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

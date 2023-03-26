@@ -1,6 +1,4 @@
-﻿
-
-namespace ContactService.Application.Dto.PersonDto
+﻿namespace ContactService.Shared.Dto.PersonDtos
 {
     public class CreatePersonResponseDto
     {

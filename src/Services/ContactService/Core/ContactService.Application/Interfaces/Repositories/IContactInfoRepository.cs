@@ -1,7 +1,7 @@
-﻿using ContactService.Application.Filters.PersonFilters;
-using ContactService.Application.Helpers.Pagination;
+﻿using Common.Shared.Wrappers;
 using ContactService.Application.ViewModels;
 using ContactService.Domain.Entities;
+using ContactService.Shared.Filters;
 
 namespace ContactService.Application.Interfaces.Repository
 {

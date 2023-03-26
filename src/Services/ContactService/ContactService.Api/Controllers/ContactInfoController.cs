@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ContactService.Application.Dto.ContactInfo;
 using ContactService.Application.Features.ContactInfoFeatures;
 using System.Net;
+using ContactService.Shared.Dto.ContactInfoDtos;
+using Common.Shared.Api.Proxy;
+using Common.Shared.Api.Wrappers;
 
 namespace ContactService.Api.Controllers
 {
@@ -23,16 +25,16 @@ namespace ContactService.Api.Controllers
         public async Task<IActionResult> AddContactInfo(InsertContactInfoRequest request)
         {
             InsertContactInfoCommand command = new(request);
-            var result = await _mediator.Send(command);
+            var result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(command));
             return new ObjectResult(result) { StatusCode = StatusCodes.Status201Created };
         }
 
 
         [HttpDelete]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ApiResponse<string>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteContactInfo(DeleteContactInfoCommand command)
         {
-            var result = await _mediator.Send(command);
+            var result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(command));
             return Ok(result);
         }
 

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using Common.Shared.Wrappers;
 using ContactService.Application.Features.PersonFeatures.Queries;
-using ContactService.Application.Filters.PersonFilters;
-using ContactService.Application.Helpers.Pagination;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Mapping;
 using ContactService.Application.ViewModels.PersonVms;
+using ContactService.Shared.Filters;
 using Moq;
 
 

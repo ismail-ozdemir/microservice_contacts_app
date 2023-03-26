@@ -1,6 +1,6 @@
-﻿namespace ContactService.Application.Dto.ContactInfo
+﻿namespace ContactService.Shared.Dto.ContactInfoDtos
 {
-    public class ContactInfoDto
+    public class ContactInfoResponseDto
     {
         public Guid InfoId { get; set; }
         public string InfoType { get; set; } = string.Empty;

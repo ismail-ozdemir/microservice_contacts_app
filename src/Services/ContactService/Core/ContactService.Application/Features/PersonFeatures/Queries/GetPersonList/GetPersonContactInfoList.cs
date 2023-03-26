@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.ContactInfo;
-using ContactService.Application.Dto.PersonDto;
-using ContactService.Application.Exceptions;
-using ContactService.Application.Filters.PersonFilters;
-using ContactService.Application.Helpers.Pagination;
+using Common.Shared.Exceptions;
 using ContactService.Application.Interfaces.Repository;
 using MediatR;
+using Common.Shared.Wrappers;
+using ContactService.Shared.Filters;
+using ContactService.Shared.Dto.PersonDtos;
+using ContactService.Shared.Dto.ContactInfoDtos;
 
 namespace ContactService.Application.Features.PersonFeatures.Queries
 {
@@ -13,7 +13,7 @@ namespace ContactService.Application.Features.PersonFeatures.Queries
 
 
 
-    public class GetPersonContactInfoList : IRequest<PersonDto.WithContactInfo>
+    public class GetPersonContactInfoList : IRequest<PersonResponse.WithContactInfo>
     {
         public PersonFilter.ById Filter { get; set; }
         public GetPersonContactInfoList(PersonFilter.ById filter)
@@ -22,7 +22,7 @@ namespace ContactService.Application.Features.PersonFeatures.Queries
         }
 
 
-        internal class GetPersonContactInfoListHandler : IRequestHandler<GetPersonContactInfoList, PersonDto.WithContactInfo>
+        internal class GetPersonContactInfoListHandler : IRequestHandler<GetPersonContactInfoList, PersonResponse.WithContactInfo>
         {
 
             private readonly IMapper _mapper;
@@ -36,7 +36,7 @@ namespace ContactService.Application.Features.PersonFeatures.Queries
                 _contactInfoRepository = contactInfoRepository ?? throw new ArgumentNullException(nameof(contactInfoRepository));
             }
 
-            public async Task<PersonDto.WithContactInfo> Handle(GetPersonContactInfoList request, CancellationToken cancellationToken)
+            public async Task<PersonResponse.WithContactInfo> Handle(GetPersonContactInfoList request, CancellationToken cancellationToken)
             {
                 if (request == null)
                     throw new ArgumentNullException(nameof(request));
@@ -46,8 +46,8 @@ namespace ContactService.Application.Features.PersonFeatures.Queries
                     throw new RecordNotFoundException(nameof(person));
 
                 var contactInfoList = await _contactInfoRepository.GetContactInfoListByPersonAsync(request.Filter)!;
-                var infoList = _mapper.Map<PagedResult<ContactInfoDto>>(contactInfoList);
-                var result = new PersonDto.WithContactInfo()
+                var infoList = _mapper.Map<PagedResult<ContactInfoResponseDto>>(contactInfoList);
+                var result = new PersonResponse.WithContactInfo()
                 {
                     Id = person.Id,
                     Name = person.Name,

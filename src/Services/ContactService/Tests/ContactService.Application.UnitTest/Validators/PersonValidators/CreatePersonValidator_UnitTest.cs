@@ -1,5 +1,6 @@
 ﻿using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Validators.Person;
+using ContactService.Shared.Dto.PersonDtos;
 using FluentValidation.TestHelper;
 
 namespace Validators.PersonValidators
@@ -17,68 +18,68 @@ namespace Validators.PersonValidators
         [Test]
         public void CreatePersonValidator_NameEmpty_NotValid()
         {
-            var req = new CreatePersonCommand
+            var request = new CreatePersonRequest()
             {
                 Name = "",
                 Surname = "özdemir",
                 Company = "netcad"
             };
-            var result = validator.TestValidate(req);
-            result.ShouldHaveValidationErrorFor(person => person.Name)
+            var result = validator.TestValidate(new CreatePersonCommand(request));
+            result.ShouldHaveValidationErrorFor(nameof(CreatePersonRequest.Name))
                   .WithErrorCode("NotEmptyValidator")
                   .WithErrorMessage("alan boş olamaz.");
         }
         [Test]
         public void CreatePersonValidator_NameLengthLessThan3_NotValid()
         {
-            var req = new CreatePersonCommand
+            var req = new CreatePersonCommand(new()
             {
                 Name = "is",
                 Surname = "özdemir",
-                Company = "netcad"
-            };
+                Company = "github"
+            });
             var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Name) && e.ErrorCode == "MinimumLengthValidator").Any();
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Name) && e.ErrorCode == "MinimumLengthValidator").Any();
             Assert.IsTrue(result, "Name alanı 3 karakterden kısa olamaz");
         }
         [Test]
         public void CreatePersonValidator_NameLengthMoreThan2_Valid()
         {
-            var req = new CreatePersonCommand
+            var req = new CreatePersonCommand(new()
             {
                 Name = "ism",
                 Surname = "özdemir",
-                Company = "netcad"
-            };
+                Company = "github"
+            });
             var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Name) && e.ErrorCode == "MinimumLengthValidator").Any();
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Name) && e.ErrorCode == "MinimumLengthValidator").Any();
             Assert.IsFalse(result, "Name alanı 3 karakter olabilir");
         }
         [Test]
         public void CreatePersonValidator_NameLengthMoreThan100_NotValid()
         {
-            var req = new CreatePersonCommand
+            var req = new CreatePersonCommand(new()
             {
                 Name = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901",
                 Surname = "özdemir",
-                Company = "netcad"
-            };
+                Company = "github"
+            });
 
             var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Name) && e.ErrorCode == "MaximumLengthValidator").Any();
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Name) && e.ErrorCode == "MaximumLengthValidator").Any();
             Assert.IsTrue(result, "Name alanı 100 karakterden fazla olamaz");
         }
         [Test]
         public void CreatePersonValidator_NameMaxLength100_Valid()
         {
-            var req = new CreatePersonCommand
+            var req = new CreatePersonCommand(new()
             {
                 Name = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
                 Surname = "özdemir",
-                Company = "netcad"
-            };
+                Company = "github"
+            });
             var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Name) && e.ErrorCode == "MaximumLengthValidator").Any();
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Name) && e.ErrorCode == "MaximumLengthValidator").Any();
             Assert.IsFalse(result, "Name alanı 100 karakterden uzun olamaz.");
         }
         #endregion
@@ -87,43 +88,43 @@ namespace Validators.PersonValidators
         [Test]
         public void CreatePersonValidator_SurnameEmpty_NotValid()
         {
-            var req = new CreatePersonCommand
+            var req = new CreatePersonCommand(new()
             {
                 Name = "ismail",
                 Surname = "",
-                Company = "netcad"
-            };
+                Company = "github"
+            });
             var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Surname) && e.ErrorCode == "NotEmptyValidator").Any();
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Surname) && e.ErrorCode == "NotEmptyValidator").Any();
             Assert.IsTrue(result);
         }
 
         [Test]
         public void CreatePersonValidator_SurnameLengthMoreThan100_NotValid()
         {
-            var req = new CreatePersonCommand
+            var req = new CreatePersonCommand(new()
             {
                 Name = "ismail",
                 Surname = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901",
-                Company = "netcad"
-            };
+                Company = "github"
+            });
 
             var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Surname) && e.ErrorCode == "MaximumLengthValidator").Any();
-            Assert.IsTrue(result, $"{nameof(CreatePersonCommand.Surname)} alanı 100 karakterden fazla olamaz");
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Surname) && e.ErrorCode == "MaximumLengthValidator").Any();
+            Assert.IsTrue(result, $"{nameof(CreatePersonRequest.Surname)} alanı 100 karakterden fazla olamaz");
         }
         [Test]
         public void CreatePersonValidator_SurnameMaxLength100_Valid()
         {
-            var req = new CreatePersonCommand
+            var request = new CreatePersonRequest()
             {
                 Name = "ismail",
                 Surname = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
-                Company = "netcad"
+                Company = "github"
             };
-            var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Surname) && e.ErrorCode == "MaximumLengthValidator").Any();
-            Assert.IsFalse(result, $"{nameof(CreatePersonCommand.Surname)} alanı 100 karakterden uzun olamaz.");
+            var validate = validator.Validate(new CreatePersonCommand(request));
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Surname) && e.ErrorCode == "MaximumLengthValidator").Any();
+            Assert.IsFalse(result, $"{nameof(CreatePersonRequest.Surname)} alanı 100 karakterden uzun olamaz.");
         }
         #endregion
 
@@ -131,43 +132,44 @@ namespace Validators.PersonValidators
         [Test]
         public void CreatePersonValidator_CompanyEmpty_NotValid()
         {
-            var req = new CreatePersonCommand
+            var request = new CreatePersonRequest()
             {
                 Name = "ismail",
                 Surname = "özdemir",
                 Company = ""
             };
-            var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Company) && e.ErrorCode == "NotEmptyValidator").Any();
+
+            var validate = validator.Validate(new CreatePersonCommand(request));
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Company) && e.ErrorCode == "NotEmptyValidator").Any();
             Assert.IsTrue(result);
         }
 
         [Test]
         public void CreatePersonValidator_CompanyLengthMoreThan100_NotValid()
         {
-            var req = new CreatePersonCommand
+            var request = new CreatePersonRequest
             {
                 Name = "ismail",
                 Surname = "özdemir",
                 Company = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901"
             };
 
-            var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Company) && e.ErrorCode == "MaximumLengthValidator").Any();
-            Assert.IsTrue(result, $"{nameof(CreatePersonCommand.Company)} alanı 100 karakterden fazla olamaz");
+            var validate = validator.Validate(new CreatePersonCommand(request));
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Company) && e.ErrorCode == "MaximumLengthValidator").Any();
+            Assert.IsTrue(result, $"{nameof(CreatePersonRequest.Company)} alanı 100 karakterden fazla olamaz");
         }
         [Test]
         public void CreatePersonValidator_CompanyMaxLength100_Valid()
         {
-            var req = new CreatePersonCommand
+            var request = new CreatePersonRequest
             {
                 Name = "ismail",
                 Surname = "özdemir",
                 Company = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
             };
-            var validate = validator.Validate(req);
-            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonCommand.Company) && e.ErrorCode == "MaximumLengthValidator").Any();
-            Assert.IsFalse(result, $"{nameof(CreatePersonCommand.Company)} alanı 100 karakterden uzun olamaz.");
+            var validate = validator.Validate(new CreatePersonCommand(request));
+            bool result = validate.Errors.Where(e => e.PropertyName == nameof(CreatePersonRequest.Company) && e.ErrorCode == "MaximumLengthValidator").Any();
+            Assert.IsFalse(result, $"{nameof(CreatePersonRequest.Company)} alanı 100 karakterden uzun olamaz.");
         }
 
         #endregion

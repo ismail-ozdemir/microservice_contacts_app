@@ -1,9 +1,9 @@
 using Serilog;
 using ContactService.Persistence.Extentions;
 using ContactService.Application;
-using ContactService.Api.Middlewares;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Common.Shared.Api.Middlewares;
 
 IConfiguration configuration = GetConfiguration();
 Log.Logger = CreateSerilogLogger(configuration);

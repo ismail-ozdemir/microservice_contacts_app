@@ -1,5 +1,11 @@
-﻿
-namespace ContactService.Application.Helpers.Pagination
+﻿using Common.Shared.Wrappers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Common.Shared.Helpers
 {
     public static class PaginationHelper
     {

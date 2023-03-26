@@ -1,5 +1,4 @@
-﻿
-namespace ContactService.Application.Dto.ContactInfo
+﻿namespace ContactService.Shared.Dto.ContactInfoDtos
 {
     public class InsertContactInfoRequest
     {

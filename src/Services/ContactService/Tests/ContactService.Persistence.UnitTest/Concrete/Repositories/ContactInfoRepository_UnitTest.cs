@@ -1,10 +1,9 @@
-﻿using ContactService.Application.Filters.PersonFilters;
-using ContactService.Domain;
+﻿using ContactService.Domain;
 using ContactService.Domain.Entities;
 using ContactService.Persistence.Concrete.Repositories;
 using ContactService.Persistence.Context;
 using ContactService.Persistence.UnitTest.Helper;
-using Polly;
+using ContactService.Shared.Filters;
 
 namespace Concrete.Repositories
 {

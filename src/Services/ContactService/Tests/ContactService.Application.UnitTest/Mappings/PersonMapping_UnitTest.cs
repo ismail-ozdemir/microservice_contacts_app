@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.ContactInfo;
-using ContactService.Application.Dto.PersonDto;
+using Common.Shared.Wrappers;
 using ContactService.Application.Features.PersonFeatures.Commands;
-using ContactService.Application.Helpers.Pagination;
 using ContactService.Application.Mapping;
 using ContactService.Application.ViewModels;
 using ContactService.Application.ViewModels.PersonVms;
 using ContactService.Domain.Entities;
+using ContactService.Shared.Dto.ContactInfoDtos;
+using ContactService.Shared.Dto.PersonDtos;
 
 namespace Mappings
 {
@@ -37,9 +37,10 @@ namespace Mappings
         [Test]
         public void PersonMapping_ConvertCreatePersonRequestToPerson_IsValid()
         {
-            var command = new CreatePersonCommand { Name = "ismail", Surname = "Özdemir", Company = "github" };
-            var person = _mapper.Map<Person>(command);
-            Assert.IsTrue(command.Name == person.Name && command.Surname == person.Surname && command.Company == person.Company);
+            var request = new CreatePersonRequest() { Name = "ismail", Surname = "Özdemir", Company = "github" };
+            var person = _mapper.Map<Person>(request);
+            
+            Assert.IsTrue(request.Name == person.Name && request.Surname == person.Surname && request.Company == person.Company);
 
         }
 
@@ -62,7 +63,7 @@ namespace Mappings
         public void PersonMapping_ConvertPersonWmToPersonDto_IsValid()
         {
             var req = new PersonWm { Id = Guid.NewGuid(), Name = "ismail", Surname = "Özdemir", Company = "github" };
-            var res = _mapper.Map<PersonDto>(req);
+            var res = _mapper.Map<PersonResponse>(req);
             Assert.IsTrue(
                 req.Id == res.Id &&
                 req.Name == res.Name &&
@@ -75,7 +76,7 @@ namespace Mappings
         public void PersonMapping_ConvertPagedResult_PersonWmToPersonDto_IsValid()
         {
             var req = new PagedResult<PersonWm> { Results = new List<PersonWm>() { new() { Id = Guid.NewGuid(), Name = "ismail", Surname = "Özdemir", Company = "github" } } };
-            var res = _mapper.Map<PagedResult<PersonDto>>(req);
+            var res = _mapper.Map<PagedResult<PersonResponse>>(req);
             Assert.IsTrue(
                 req.PageNo == res.PageNo &&
                 req.PageSize == res.PageSize &&
@@ -91,7 +92,7 @@ namespace Mappings
         {
             ContactInfoWm req = new() { InfoId = Guid.NewGuid(), InfoType = "phone", InfoContent = "05551112233" };
 
-            var res = _mapper.Map<ContactInfoDto>(req);
+            var res = _mapper.Map<ContactInfoResponseDto>(req);
 
             Assert.IsNotNull(req);
             Assert.IsTrue(req.InfoId == res.InfoId);

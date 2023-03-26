@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.PersonDto;
-using ContactService.Application.Helpers.Pagination;
+using Common.Shared.Wrappers;
 using ContactService.Application.Interfaces.Repository;
+using ContactService.Shared.Dto.PersonDtos;
 using MediatR;
 
 namespace ContactService.Application.Features.PersonFeatures.Queries
 {
-    public class GetPersonListQueryHandler : IRequestHandler<GetPersonListQuery, PagedResult<PersonDto>>
+    public class GetPersonListQueryHandler : IRequestHandler<GetPersonListQuery, PagedResult<PersonResponse>>
     {
 
         private readonly IMapper _mapper;
@@ -17,11 +17,11 @@ namespace ContactService.Application.Features.PersonFeatures.Queries
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<PagedResult<PersonDto>> Handle(GetPersonListQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResult<PersonResponse>> Handle(GetPersonListQuery request, CancellationToken cancellationToken)
         {
 
             var personList = await _personRepository.GetPersonsAsync(request.Filter, cancellationToken);
-            return _mapper.Map<PagedResult<PersonDto>>(personList);
+            return _mapper.Map<PagedResult<PersonResponse>>(personList);
         }
 
     }

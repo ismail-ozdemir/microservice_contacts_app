@@ -1,4 +1,4 @@
-﻿using ContactService.Application.Exceptions;
+﻿using Common.Shared.Exceptions;
 using ContactService.Application.Interfaces.Repository;
 using MediatR;
 

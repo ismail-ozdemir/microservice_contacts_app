@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
-using ContactService.Application.Exceptions;
+using Common.Shared.Exceptions;
+using Common.Shared.Wrappers;
 using ContactService.Application.Features.PersonFeatures.Queries;
-using ContactService.Application.Filters.PersonFilters;
-using ContactService.Application.Helpers.Pagination;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Application.Mapping;
 using ContactService.Application.ViewModels;
 using ContactService.Domain.Entities;
+using ContactService.Shared.Filters;
 using Moq;
-using NUnit.Framework;
 using static ContactService.Application.Features.PersonFeatures.Queries.GetPersonContactInfoList;
 
 namespace ContactService.Application.UnitTest.Features.PersonFeatures.Queries

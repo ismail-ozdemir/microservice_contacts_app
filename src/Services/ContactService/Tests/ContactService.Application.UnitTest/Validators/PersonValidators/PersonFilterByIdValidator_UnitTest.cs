@@ -1,6 +1,6 @@
 ﻿using ContactService.Application.Features.PersonFeatures.Queries;
-using ContactService.Application.Filters.PersonFilters;
 using ContactService.Application.Validators.Person;
+using ContactService.Shared.Filters;
 using FluentValidation.TestHelper;
 
 namespace ContactService.Application.UnitTest.Validators.PersonValidators

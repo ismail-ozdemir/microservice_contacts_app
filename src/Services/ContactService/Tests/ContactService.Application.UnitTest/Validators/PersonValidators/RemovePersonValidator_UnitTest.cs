@@ -16,7 +16,7 @@ namespace Validators.PersonValidators
         [Test]
         public void RemovePersonValidator_IdEmpty_NotValid()
         {
-            var req = new RemovePersonCommand { Id = Guid.Empty };
+            var req = new RemovePersonCommand(Guid.Empty);
             var validate = validator.TestValidate(req);
             validate.ShouldHaveValidationErrorFor(p => p.Id).WithErrorCode("NotEmptyValidator");
         }

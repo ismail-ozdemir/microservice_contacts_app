@@ -1,4 +1,4 @@
-﻿using ContactService.Application.Exceptions;
+﻿using Common.Shared.Exceptions;
 using ContactService.Application.Features.PersonFeatures.Commands;
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Domain.Entities;
@@ -24,7 +24,7 @@ namespace Features.PersonFeatures.Commands
         {
 
             RemovePersonCommandHandler handler = new(_personRepository);
-            RemovePersonCommand command = new() { Id = Guid.Empty };
+            RemovePersonCommand command = new(Guid.Empty);
 
             Assert.ThrowsAsync<RecordNotFoundException>(() => handler.Handle(command, CancellationToken.None));
         }
@@ -34,7 +34,7 @@ namespace Features.PersonFeatures.Commands
         {
 
             RemovePersonCommandHandler handler = new(_personRepository);
-            RemovePersonCommand command = new() { Id = Guid.NewGuid() };
+            RemovePersonCommand command = new(Guid.NewGuid());
 
             var result = await handler.Handle(command, CancellationToken.None);
 

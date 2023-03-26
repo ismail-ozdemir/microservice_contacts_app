@@ -1,6 +1,5 @@
 ﻿
-
-using ContactService.Application.Helpers.Pagination;
+using Common.Shared.Helpers;
 
 namespace Helpers.Pagination
 {

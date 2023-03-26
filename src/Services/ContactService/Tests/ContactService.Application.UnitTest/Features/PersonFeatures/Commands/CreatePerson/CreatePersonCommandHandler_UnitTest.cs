@@ -19,19 +19,19 @@ namespace Features.PersonFeatures.Commands
         public void Setup()
         {
             _mapper = new MapperConfiguration(cfg => { cfg.AddProfile<PersonMapping>(); }).CreateMapper();
-            command = new() { Name = "ismail", Surname = "Özdemir", Company = "github" };
+            command = new(new() { Name = "ismail", Surname = "Özdemir", Company = "github" });
             _personRepository = CreatePersonRepository();
         }
 
         [Test]
         public async Task AddPersonCommandHandler_HandleAddPersonCommand_CreatePersonResponse()
         {
-
+            var req = command.request;
             CreatePersonCommandHandler handler = new CreatePersonCommandHandler(_mapper, _personRepository);
             var result = await handler.Handle(command, new CancellationToken());
 
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.PersonId != Guid.Empty && result.Name == command.Name && result.Surname == command.Surname && result.Company == command.Company);
+            Assert.IsTrue(result.PersonId != Guid.Empty && result.Name == req.Name && result.Surname == req.Surname && result.Company == req.Company);
         }
 
 

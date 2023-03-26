@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.ContactInfo;
 using ContactService.Application.Mapping;
 using ContactService.Domain;
 using ContactService.Domain.Entities;
+using ContactService.Shared.Dto.ContactInfoDtos;
 
 namespace Mappings
 {

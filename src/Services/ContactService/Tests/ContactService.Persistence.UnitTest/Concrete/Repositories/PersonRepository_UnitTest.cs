@@ -1,7 +1,7 @@
-﻿using ContactService.Application.Filters.PersonFilters;
-using ContactService.Domain.Entities;
+﻿using ContactService.Domain.Entities;
 using ContactService.Persistence.Concrete.Repositories;
 using ContactService.Persistence.Context;
+using ContactService.Shared.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

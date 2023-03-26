@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using ContactService.Application.Dto.PersonDto;
+
 using ContactService.Application.Interfaces.Repository;
 using ContactService.Domain.Entities;
+using ContactService.Shared.Dto.PersonDtos;
 using MediatR;
 
 
@@ -19,10 +20,10 @@ namespace ContactService.Application.Features.PersonFeatures.Commands
             _personRepository = personRepository;
         }
 
-        public async Task<CreatePersonResponseDto> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
+        public async Task<CreatePersonResponseDto> Handle(CreatePersonCommand command, CancellationToken cancellationToken)
         {
 
-            Person person = _mapper.Map<Person>(request);
+            Person person = _mapper.Map<Person>(command.request);
             var newPerson = await _personRepository.AddAsync(person);
             var result = _mapper.Map<CreatePersonResponseDto>(newPerson);
             return result;

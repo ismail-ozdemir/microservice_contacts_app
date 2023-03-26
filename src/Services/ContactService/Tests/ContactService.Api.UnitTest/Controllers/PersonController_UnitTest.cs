@@ -1,7 +1,6 @@
 ﻿using ContactService.Api.Controllers;
-using ContactService.Application.Dto.PersonDto;
 using ContactService.Application.Features.PersonFeatures.Commands;
-using ContactService.Application.Features.PersonFeatures.Queries;
+using ContactService.Shared.Dto.PersonDtos;
 using System.Net;
 
 namespace Controllers
@@ -58,8 +57,8 @@ namespace Controllers
         public async Task PersonController_AddAsyncValidaData_CreatePersonResponse()
         {
             PersonController c = new PersonController(_mediator);
-            var req = new CreatePersonCommand { Name = "ismail", Surname = "Özdemir", Company = "github" };
-            var res = await c.AddAsync(req);
+            var request = new CreatePersonRequest() { Name = "ismail", Surname = "Özdemir", Company = "github" };
+            var res = await c.AddAsync(request);
 
 
             Assert.That(res.GetType(), Is.EqualTo(typeof(ObjectResult)), $"expected response type :  {nameof(ObjectResult)}");
@@ -75,8 +74,7 @@ namespace Controllers
         public async Task PersonController_RemoveAsync_OK()
         {
             PersonController c = new PersonController(_mediator);
-            var command = new RemovePersonCommand { Id = Guid.NewGuid() };
-            var res = await c.RemoveAsync(command);
+            var res = await c.RemoveAsync(Guid.NewGuid());
 
 
             Assert.That(res.GetType(), Is.EqualTo(typeof(OkObjectResult)), $"expected response type :  {nameof(OkObjectResult)}");
@@ -99,9 +97,9 @@ namespace Controllers
                                  .Returns<CreatePersonCommand, CancellationToken>((command, token) => Task.FromResult(new CreatePersonResponseDto
                                  {
                                      PersonId = Guid.NewGuid(),
-                                     Name = command.Name,
-                                     Surname = command.Surname,
-                                     Company = command.Company
+                                     Name = command.request.Name,
+                                     Surname = command.request.Surname,
+                                     Company = command.request.Company
                                  }));
 
             mediator.Setup(m => m.Send(It.IsAny<RemovePersonCommand>(), It.IsAny<CancellationToken>()))

@@ -27,8 +27,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Common\Common.Shared.Api\Common.Shared.Api.csproj" />
     <ProjectReference Include="..\Infrastructure\ContactService.Infrastructure\ContactService.Infrastructure.csproj" />
     <ProjectReference Include="..\Infrastructure\ContactService.Persistence\ContactService.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>
