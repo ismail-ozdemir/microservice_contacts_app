@@ -25,7 +25,7 @@ namespace ContactService.Api.Controllers
         public async Task<IActionResult> AddContactInfo(InsertContactInfoRequest request)
         {
             InsertContactInfoCommand command = new(request);
-            var result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(command));
+            ApiResponse<SaveContactInfoResponseDto> result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(command))!;
             return new ObjectResult(result) { StatusCode = StatusCodes.Status201Created };
         }
 
@@ -34,7 +34,7 @@ namespace ContactService.Api.Controllers
         [ProducesResponseType(typeof(ApiResponse<string>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteContactInfo(DeleteContactInfoCommand command)
         {
-            var result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(command));
+            ApiResponse<bool> result = await CallServiceProxy.CallServiceAsync(() => _mediator.Send(command))!;
             return Ok(result);
         }
 

@@ -1,7 +1,7 @@
-﻿using EventBus.Abstractions;
+﻿using EventBus.Base.Abstractions;
 using System.Xml.Linq;
 
-namespace EventBus.Base.SubManagers
+namespace EventBus.Base.Concrete
 {
     public class InMemoryEventBusSubscriptionManager : IEventBusSubcriptionManager
     {

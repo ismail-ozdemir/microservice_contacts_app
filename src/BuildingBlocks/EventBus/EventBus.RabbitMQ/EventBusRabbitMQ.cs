@@ -2,18 +2,19 @@
 using Polly;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
-using BuildingBlocks.EventBus.Absractions;
+using RabbitMQ.Client.Events;
 using System.Net.Sockets;
 using System.Text;
-using RabbitMQ.Client.Events;
-using BuildingBlocks.EventBus.RabbitMQ;
-using BuildingBlocks.EventBus.Base;
-using System.Threading.Channels;
+using EventBus.Base.Concrete;
+using Microsoft.Extensions.Logging;
+using EventBus.Base.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using EventBus.RabbitMQ.Configurations;
 
-namespace BuildingBlocks.EventBus.RabbitMQ
+namespace EventBus.RabbitMQ
 {
 
-    public class EventBusRabbitMQ : BaseEventBus
+    internal class EventBusRabbitMQ : BaseEventBus
     {
         private readonly RabbitMQPersistentConnection persistentConnection;
         private readonly IConnectionFactory? connectionFactory;
@@ -21,13 +22,15 @@ namespace BuildingBlocks.EventBus.RabbitMQ
         private readonly IModel consumerChannel;
         private readonly new ILogger<EventBusRabbitMQ> _logger;
 
-        public EventBusRabbitMQ(IServiceProvider serviceProvider, EventBusConfig config) : base(serviceProvider, config)
+        protected RabbitMqConfig _config { get; set; }
+        public EventBusRabbitMQ(IServiceProvider serviceProvider, RabbitMqConfig config) : base(serviceProvider)
         {
-
+            _config = config;
             _logger = serviceProvider.GetRequiredService<ILogger<EventBusRabbitMQ>>();
             if (config.Connection != null)
             {
-                var connJson = JsonConvert.SerializeObject(config, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                // TODO : düzenlenecek
+                string connJson = JsonConvert.SerializeObject(config, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                 connectionFactory = JsonConvert.DeserializeObject<ConnectionFactory>(connJson);
 
 
@@ -53,7 +56,7 @@ namespace BuildingBlocks.EventBus.RabbitMQ
             }
         }
 
-        public override void Publish(IQueueEvent @event)
+        public override void Publish(IEvent @event)
         {
             var policy = Policy.Handle<SocketException>().Or<BrokerUnreachableException>()
                                  .WaitAndRetry(
@@ -73,7 +76,7 @@ namespace BuildingBlocks.EventBus.RabbitMQ
             policy.Execute(() =>
             {
 
-                var props = publishChannel.CreateBasicProperties();
+                IBasicProperties props = publishChannel.CreateBasicProperties();
                 props.DeliveryMode = 2; // Persistent message
                 publishChannel.BasicPublish(
                     exchange: _config.DefaultTopicName,
@@ -87,9 +90,9 @@ namespace BuildingBlocks.EventBus.RabbitMQ
 
 
 
-        public override void Subscribe<TQueueEvent, TQueueEventHandler>()
+        public override void Subscribe<TEvent, TEventHandler>()
         {
-            string eventName = typeof(TQueueEvent).Name;
+            string eventName = typeof(TEvent).Name;
             if (!SubsManager.HasSubcriptionForEvent(eventName))
             {
                 if (!persistentConnection.isConnected)
@@ -109,7 +112,7 @@ namespace BuildingBlocks.EventBus.RabbitMQ
                     routingKey: eventName
                     );
             }
-            SubsManager.AddSubscription<TQueueEvent, TQueueEventHandler>();
+            SubsManager.AddSubscription<TEvent, TEventHandler>();
             StartBasicConsume(eventName);
 
         }
@@ -145,9 +148,10 @@ namespace BuildingBlocks.EventBus.RabbitMQ
         {
 
             string eventName = e.RoutingKey;
-            var message = Encoding.UTF8.GetString(e.Body.Span);
+            string message = Encoding.UTF8.GetString(e.Body.Span);
             try
             {
+                // TODO : await olmamalı
                 await ProcessEvent(eventName, message, (isSuccess) =>
                 {
                     if (isSuccess)
